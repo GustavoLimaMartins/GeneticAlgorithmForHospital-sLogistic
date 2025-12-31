@@ -1,5 +1,5 @@
 from address_routes.distribute_center import get_center_coordinates
-from a_generate_population import deliveries_solution_candidate
+from a_generate_population import generate_population_coordinates
 from b_manhattan_distance import route_distance
 from delivery_setup.deliveries import load_deliveries_info as ldi
 from delivery_setup.vehicles import load_vehicles_info as lvi
@@ -12,7 +12,7 @@ def fitness(solution: dict[str, list[str]], city: str) -> float:
     total_cost = 0
     penalty = 0
 
-    for vehicle_id, route in solution.items():
+    for vehicle_id, route in solution:
         vehicle = vehicles[vehicle_id]
 
         # 1. Capacity
@@ -44,6 +44,7 @@ def fitness(solution: dict[str, list[str]], city: str) -> float:
     return total_cost + penalty
 
 if __name__ == "__main__":
-    candidate_solution = deliveries_solution_candidate("SP")
-    fit_value = fitness(candidate_solution, "SP")
+    candidates_individuals = generate_population_coordinates("SP", 10)
+    print(candidates_individuals[0])
+    fit_value = fitness(candidates_individuals[0], "SP")
     print(f"Fitness Value: {fit_value}")

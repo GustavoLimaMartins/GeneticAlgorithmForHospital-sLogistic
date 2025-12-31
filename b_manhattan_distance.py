@@ -19,10 +19,19 @@ def route_distance(population: list[tuple[float, float]], center_coords: list[fl
 
     # Intial point
     distance += cartesian_to_manhattan(center_coords, population[0])
+    print("Distance after initial point:", distance)
     # Intermediate points
     for i in range(len(population) - 1):
         distance += cartesian_to_manhattan(population[i], population[i + 1])
+        print(f"Distance after point {i} to {i+1}:", distance)
     # Return to depot
     distance += cartesian_to_manhattan(population[-1], center_coords)
+    print("Distance after returning to center:", distance)
 
     return distance
+
+if __name__ == "__main__":
+    center = (0, 0)
+    route = [(1, 2), (4, 6), (7, 8)]
+    total_distance = route_distance(route, center)
+    print(f"Total Manhattan Distance of the route: {total_distance}")
