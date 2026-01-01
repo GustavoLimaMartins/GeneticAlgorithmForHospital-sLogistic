@@ -13,20 +13,14 @@ def cartesian_to_manhattan(coord1: tuple[float, float], coord2: tuple[float, flo
 
 def route_distance(population: list[tuple[float, float]], center_coords: list[float, float]) -> float:
     distance = 0
-    
-    #print("Center Coordinates:", center_coords)
-    #print("Population Coordinates:", population)
 
     # Intial point
     distance += cartesian_to_manhattan(center_coords, population[0])
-    print("Distance after initial point:", distance)
     # Intermediate points
     for i in range(len(population) - 1):
         distance += cartesian_to_manhattan(population[i], population[i + 1])
-        print(f"Distance after point {i} to {i+1}:", distance)
     # Return to depot
     distance += cartesian_to_manhattan(population[-1], center_coords)
-    print("Distance after returning to center:", distance)
 
     return distance
 

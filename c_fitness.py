@@ -6,7 +6,7 @@ from delivery_setup.vehicles import load_vehicles_info as lvi
 
 BIG_M = 1e6 # Severe penalty
 
-def fitness(solution: dict[str, list[str]], city: str) -> float:
+def calculate_fitness(solution: dict[str, list[str]], city: str) -> float:
     deliveries = ldi(city)  # Cities info
     vehicles = lvi(city)    # Vehicles info
     total_cost = 0
@@ -46,5 +46,5 @@ def fitness(solution: dict[str, list[str]], city: str) -> float:
 if __name__ == "__main__":
     candidates_individuals = generate_population_coordinates("SP", 10)
     print(candidates_individuals[0])
-    fit_value = fitness(candidates_individuals[0], "SP")
+    fit_value = calculate_fitness(candidates_individuals[0], "SP")
     print(f"Fitness Value: {fit_value}")
