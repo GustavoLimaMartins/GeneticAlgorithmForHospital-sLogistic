@@ -36,7 +36,7 @@ class GeneticAlgorithm:
         print(f"Entregas atribuídas: {total_deliveries}")
         print(f"Número de rotas: {len(self.best_routes)}")
     
-    def routes_summary(self):
+    def routes_summary(self) -> dict[int, list[tuple[str, str]]]:
         # Group routes by vehicle
         vehicle_route_count = {}
         for vehicle_id, route_deliveries in self.best_routes:
@@ -50,14 +50,19 @@ class GeneticAlgorithm:
             print(f"  Veículo {vehicle_id}: {len(routes_list)} viagens, {total_del} entregas")
 
         print(f"\nDetalhes das rotas:")
+        routes_metadata = dict()
         for i, (vehicle_id, route_deliveries) in enumerate(self.best_routes, 1):
-            delivery_details = [(del_id, self.deliveries[del_id]["demand"]) for del_id in route_deliveries]
-            total_load = sum(demand for _, demand in delivery_details)
+            demand_values = [self.deliveries[del_id]["demand"] for del_id in route_deliveries]
+            total_load = sum(demand_values)
+            delivery_details = [((del_id, vehicle_id)) for del_id in route_deliveries]
             print(f"  Rota {i} (Veículo {vehicle_id}): {len(route_deliveries)} entregas | Carga total: {total_load}")
-            print(f"    Entregas (ID, Demanda): {delivery_details}")
+            print(f"    Entregas (ID): {route_deliveries}")
+            routes_metadata[i] = delivery_details
         print(f"{'='*60}\n")
+        
+        return routes_metadata
 
-    def run(self):
+    def run(self) -> dict[int, list[tuple[str, str]]]:
         initial_population = generate_population_coordinates(self.city_code, self.population_length)
 
         population = [
@@ -121,17 +126,19 @@ class GeneticAlgorithm:
             population = offspring
 
         self.final_message()
-        self.routes_summary()
+        return self.routes_summary()
 
 
 if __name__ == "__main__":
 
     ga = GeneticAlgorithm(
         city_code='SP',
-        max_generations=5000,
+        max_generations=100,
         population_length=50,
         ratio_elitism=0.1,
         ratio_mutation=0.5,
         tournament_k=3
     )
-    ga.run()
+    routes_metadata = ga.run()
+    print(routes_metadata)
+

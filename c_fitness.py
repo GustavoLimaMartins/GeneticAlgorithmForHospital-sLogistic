@@ -12,7 +12,7 @@ def calculate_fitness(solution: dict[str, list[str]], city: str) -> float:
     total_cost = 0
     penalty = 0
 
-    for vehicle_id, route in solution:
+    for route_index, (vehicle_id, route) in enumerate(solution):
         vehicle = vehicles[vehicle_id]
 
         # 1. Capacity
@@ -37,7 +37,11 @@ def calculate_fitness(solution: dict[str, list[str]], city: str) -> float:
         # 5. Penalty for delay of critical items
         for pos, d_id in enumerate(route):
             priority = deliveries[d_id]["priority"]
-            penalty += pos * priority * 50
+            if priority == 3:  # Crítico
+                # Penalty increases with route index and position in route
+                penalty += (route_index ** 2) * 10000 + pos * 1000
+            elif priority == 2:
+                penalty += route_index * 2000 + pos * 200
 
         total_cost += travel_cost
 
