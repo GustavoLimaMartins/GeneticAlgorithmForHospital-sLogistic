@@ -3,27 +3,35 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-#TODO Create a class to handle Google Maps API interactions
-#TODO Object returns 'directions' variable with route information
 
-GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
-gmaps = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
+class GoogleMapsAPI:
+    def __init__(self):
+        self.GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
+        self.client = googlemaps.Client(key=self.GOOGLE_MAPS_API_KEY)
 
-origin = (-23.5505, -46.6333)
+    def get_directions(self, origin: tuple[float, float], 
+                       destination: tuple[float, float], 
+                       waypoints: list[tuple[float, float]] = None, 
+                       mode: str = "driving"
+                       ) -> dict:
+        
+        directions = self.client.directions(
+            origin=origin,
+            destination=destination,
+            waypoints=waypoints,
+            mode=mode,
+            optimize_waypoints=False,
+            departure_time="now"
+        )
+        return directions
 
-waypoints = [
-    (-23.5629, -46.6544),  # ponto intermediário 1
-    (-23.5893, -46.6740),  # ponto intermediário 2
-]
 
-destination = (-23.6824, -46.5165)
+if __name__ == "__main__":
+    gmaps_api = GoogleMapsAPI()
+    origin = (-23.55052, -46.633308)  # São Paulo
+    destination = (-23.559616, -46.658481)  # Another point in São Paulo
+    waypoints = [(-23.555, -46.64), (-23.557, -46.65)]
+    
+    directions = gmaps_api.get_directions(origin, destination, waypoints)
+    print(directions)
 
-
-directions = gmaps.directions(
-    origin=origin,
-    destination=destination,
-    waypoints=waypoints,
-    mode="driving",
-    optimize_waypoints=False,
-    departure_time="now"
-)

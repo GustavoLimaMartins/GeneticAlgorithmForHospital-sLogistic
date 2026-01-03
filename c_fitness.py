@@ -4,7 +4,7 @@ from b_manhattan_distance import route_distance
 from delivery_setup.deliveries import load_deliveries_info as ldi
 from delivery_setup.vehicles import load_vehicles_info as lvi
 
-BIG_M = 1e6 # Severe penalty
+BIG_M = 200  # Severe penalty
 
 def calculate_fitness(solution: dict[str, list[str]], city: str) -> float:
     deliveries = ldi(city)  # Cities info
@@ -37,11 +37,11 @@ def calculate_fitness(solution: dict[str, list[str]], city: str) -> float:
         # 5. Penalty for delay of critical items
         for pos, d_id in enumerate(route):
             priority = deliveries[d_id]["priority"]
-            if priority == 3:  # Crítico
-                # Penalty increases with route index and position in route
-                penalty += (route_index ** 2) * 10000 + pos * 1000
+            if priority == 3:
+                # Penalty increases with route index and position in route (adjusted for 10% cost influence)
+                penalty += route_index * 6 + pos * 0.8
             elif priority == 2:
-                penalty += route_index * 2000 + pos * 200
+                penalty += route_index * 1.5 + pos * 0.3
 
         total_cost += travel_cost
 

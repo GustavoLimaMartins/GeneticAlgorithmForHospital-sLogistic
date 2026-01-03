@@ -16,6 +16,9 @@ class GeneticAlgorithm:
         self.ratio_elitism = ratio_elitism
         self.ratio_mutation = ratio_mutation
         self.tournament_k = tournament_k
+        self.vehicles = v_info(self.city_code)
+        self.deliveries = d_info(self.city_code)
+        self.depot = depot_coords(self.city_code)
 
     def initial_message(self):
         print(f"\n{'='*60}")
@@ -36,7 +39,7 @@ class GeneticAlgorithm:
         print(f"Entregas atribuídas: {total_deliveries}")
         print(f"Número de rotas: {len(self.best_routes)}")
     
-    def routes_summary(self) -> dict[int, list[tuple[str, str]]]:
+    def routes_summary(self, index: int) -> dict:
         # Group routes by vehicle
         vehicle_route_count = {}
         for vehicle_id, route_deliveries in self.best_routes:
@@ -58,21 +61,24 @@ class GeneticAlgorithm:
             print(f"  Rota {i} (Veículo {vehicle_id}): {len(route_deliveries)} entregas | Carga total: {total_load}")
             print(f"    Entregas (ID): {route_deliveries}")
             routes_metadata[i] = delivery_details
+        
         print(f"{'='*60}\n")
         
-        return routes_metadata
+        return {
+            index: {
+                'generation': self.best_overall['generation'],
+                'fitness': self.best_overall['fitness'],
+                'routes_metadata': routes_metadata
+            }
+        }
 
-    def run(self) -> dict[int, list[tuple[str, str]]]:
+    def run(self, index: int) -> dict[int, list[tuple[str, str]]]:
         initial_population = generate_population_coordinates(self.city_code, self.population_length)
 
         population = [
             {"chromosome": encode_individual(ind), "fitness": None}
             for ind in initial_population
         ]
-
-        self.vehicles = v_info(self.city_code)
-        self.deliveries = d_info(self.city_code)
-        self.depot = depot_coords(self.city_code)
 
         self.initial_message()
         self.best_overall = None
@@ -126,7 +132,7 @@ class GeneticAlgorithm:
             population = offspring
 
         self.final_message()
-        return self.routes_summary()
+        return self.routes_summary(index)
 
 
 if __name__ == "__main__":
@@ -139,6 +145,6 @@ if __name__ == "__main__":
         ratio_mutation=0.5,
         tournament_k=3
     )
-    routes_metadata = ga.run()
+    routes_metadata = ga.run(1)
     print(routes_metadata)
 
