@@ -39,7 +39,7 @@ class GeneticAlgorithm:
         print(f"Entregas atribuídas: {total_deliveries}")
         print(f"Número de rotas: {len(self.best_routes)}")
     
-    def routes_summary(self, index: int) -> dict:
+    def routes_summary(self) -> dict[str, any]:
         # Group routes by vehicle
         vehicle_route_count = {}
         for vehicle_id, route_deliveries in self.best_routes:
@@ -65,14 +65,12 @@ class GeneticAlgorithm:
         print(f"{'='*60}\n")
         
         return {
-            index: {
-                'generation': self.best_overall['generation'],
-                'fitness': self.best_overall['fitness'],
-                'routes_metadata': routes_metadata
-            }
+            'generation': self.best_overall['generation'],
+            'fitness': self.best_overall['fitness'],
+            'routes_metadata': routes_metadata
         }
 
-    def run(self, index: int) -> dict[int, list[tuple[str, str]]]:
+    def run(self) -> dict[str, any]:
         initial_population = generate_population_coordinates(self.city_code, self.population_length)
 
         population = [
@@ -132,7 +130,7 @@ class GeneticAlgorithm:
             population = offspring
 
         self.final_message()
-        return self.routes_summary(index)
+        return self.routes_summary()
 
 
 if __name__ == "__main__":
@@ -145,6 +143,6 @@ if __name__ == "__main__":
         ratio_mutation=0.5,
         tournament_k=3
     )
-    routes_metadata = ga.run(1)
+    routes_metadata = ga.run()
     print(routes_metadata)
 

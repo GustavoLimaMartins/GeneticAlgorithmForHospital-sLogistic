@@ -29,7 +29,7 @@ class RouteEvaluator:
             critical_counts[route_id] = critical_count
         return critical_counts
 
-    def metric_summary(self, index: int) -> dict[str, float]:
+    def metric_summary(self) -> dict[str, float]:
         capacity_util = self.capacity_utilization()
         travel_costs = self.travel_costs()
         critical_counts = self.critical_delivery_count_by_deliveries()
@@ -38,20 +38,15 @@ class RouteEvaluator:
         for i in critical_counts.keys():
             weighted_sum += critical_counts[i] * (1 - (i * 0.1))
 
-        #TODO Insert a identifier for each execution to track historical metrics
         return {
-            index:
-            {
-                "capacity_utilization_metric_positive": round(sum(capacity_util.values()) / len(capacity_util.keys()), 2),
-                "travel_costs_metric_negative": round(sum(travel_costs.values()), 2),
-                "critical_delivery_metric_positive": round(weighted_sum, 2)
-            }
+            "capacity_utilization_metric_positive": round(sum(capacity_util.values()) / len(capacity_util.keys()), 2),
+            "travel_costs_metric_negative": round(sum(travel_costs.values()), 2),
+            "critical_delivery_metric_positive": round(weighted_sum, 2)
         }
     
 if __name__ == "__main__":
     from genetic_algorithm import GeneticAlgorithm
     city_code = "SP"
-    index = 1
 
     ga = GeneticAlgorithm(
         city_code=city_code,
@@ -61,9 +56,9 @@ if __name__ == "__main__":
         ratio_mutation=0.3,
         tournament_k=2
     )
-    ga_metadata = ga.run(index)
-    routes_metadata = ga_metadata[index]['routes_metadata']
+    ga_metadata = ga.run()
+    routes_metadata = ga_metadata['routes_metadata']
 
     evaluator = RouteEvaluator(routes_metadata=routes_metadata, vehicle_data=ga.vehicles, delivery_data=ga.deliveries)
     print(ga_metadata)
-    print(evaluator.metric_summary(index))
+    print(evaluator.metric_summary())
