@@ -656,12 +656,22 @@ streamlit run interface.py
 
 ```bash
 # 1. Build da imagem
-docker build -t einstein_logistic_fiap_fase2 .
+docker build -t einstein_hospitals_logistic_fiap .
 
-# 2. Execute o container
-docker run --name genetic_algorithm \
-  -v $(pwd)/itinerary_routes/routes_maps:/app/itinerary_routes/routes_maps \
-  einstein_logistic_fiap_fase2
+# 2. Criar o container
+docker create --name genetic_algorithm -p 8000:8000 einstein_hospitals_logistic_fiap:latest
+
+# 3. Iniciar o container
+docker start genetic_algorithm
+
+# 4. Visualizar logs (opcional)
+docker logs -f genetic_algorithm
+
+# 5. Parar o container
+docker stop genetic_algorithm
+
+# 6. Remover o container (se necessário)
+docker rm genetic_algorithm
 ```
 
 ### Configuração de Parâmetros
@@ -669,68 +679,445 @@ docker run --name genetic_algorithm \
 Edite `run.py` para ajustar parâmetros:
 
 ```python
-solutions = Solution(total_iterations=5)
+solutions = Solution(total_iterations=20)
 
 solutions.heuristic_loop(
     city_code="SP",
-    population_length=(100, 50, 100, 50, 80),
-    max_generations=(50, 150, 250, 350, 450),
-    ratio_elitism=(0.1, 0.2, 0.05, 0.03, 0.15),
-    ratio_mutation=(0.05, 0.25, 0.5, 0.3, 0.1),
-    tournament_k=(2, 5, 3, 3, 2)
+    # População: varia de 100 a 400 indivíduos
+    population_length=(120, 150, 180, 200, 220, 250, 280, 300, 320, 350,
+                      100, 140, 170, 210, 240, 270, 310, 340, 380, 400),
+    
+    # Gerações: fixado em 2000 para garantir convergência
+    max_generations=(2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000,
+                    2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000),
+    
+    # Elitismo: 2% a 8% da população
+    ratio_elitism=(0.02, 0.03, 0.03, 0.04, 0.04, 0.05, 0.05, 0.06, 0.06, 0.08,
+                  0.03, 0.04, 0.05, 0.05, 0.06, 0.04, 0.05, 0.06, 0.07, 0.08),
+    
+    # Mutação: 5% a 15% de probabilidade
+    ratio_mutation=(0.12, 0.10, 0.08, 0.10, 0.08, 0.10, 0.08, 0.10, 0.12, 0.15,
+                   0.05, 0.06, 0.08, 0.10, 0.12, 0.07, 0.09, 0.11, 0.13, 0.15),
+    
+    # Torneio: 2 a 4 competidores
+    tournament_k=(2, 2, 3, 3, 3, 3, 3, 4, 4, 4,
+                 2, 3, 3, 3, 4, 2, 3, 3, 4, 4)
 )
 ```
 
-**Múltiplas Iterações**:
-- Testa diferentes combinações de parâmetros
-- Cada tupla deve ter tamanho igual a `total_iterations`
-- Permite exploração do espaço de hiperparâmetros
+**Experimento Sistemático de Hiperparâmetros**:
+- ✅ **20 configurações distintas** para análise comparativa robusta
+- ✅ **Exploração balanceada**: varia população, elitismo, mutação e pressão seletiva
+- ✅ **Convergência garantida**: 2000 gerações asseguram exploração completa
+- ✅ **Cada tupla** deve ter tamanho igual a `total_iterations`
+- ✅ **Design experimental**: permite identificar configuração ótima para o problema Einstein
 
 ### Fluxo de Execução Completo
 
 ```
 1. PREPARAÇÃO
    ├─ Carregar dados (entregas, veículos, coordenadas)
-   └─ Configurar parâmetros do AG
+   └─ Configurar 20 arranjos de parâmetros do AG
 
-2. OTIMIZAÇÃO (run.py)
-   ├─ Executar 5 iterações do AG
-   ├─ Selecionar melhores soluções (fitness vs metrics)
-   ├─ Gerar mapas das rotas (Google Maps + Folium)
-   ├─ Criar vector store (Chroma DB)
+2. OTIMIZAÇÃO (run.py) - Algoritmo Genético
+   ├─ Executar 20 iterações com configurações distintas
+   │  ├─ Cada iteração: 2000 gerações de evolução
+   │  ├─ Variação sistemática de hiperparâmetros
+   │  └─ População: 100-400, Elitismo: 2-8%, Mutação: 5-15%
+   │
+   ├─ Selecionar melhores soluções
+   │  ├─ best_by_fitness: minimiza função objetivo
+   │  └─ best_by_metrics: maximiza KPIs ponderados
+   │
+   ├─ Gerar visualizações georreferenciadas
+   │  ├─ Rotas reais via Google Maps API
+   │  ├─ Mapas interativos HTML (Folium)
+   │  └─ Mapas estáticos PNG (1200x800px)
+   │
+   ├─ Gerar Base de Conhecimento (RAG)
+   │  ├─ Processar 11 documentos .md (~15k palavras)
+   │  ├─ Chunking: 450 caracteres, overlap 100
+   │  ├─ Embeddings: OpenAI text-embedding-ada-002
+   │  └─ Vector Store: Chroma DB persistente
+   │
    └─ Salvar solutions_data.json
+      ├─ best_solutions: {best_by_fitness, best_by_metrics}
+      ├─ all_solutions: todas as 20 iterações
+      ├─ routes_sequences: sequências com nomes de hospitais
+      └─ metadata: {vehicle_data, delivery_data, depot_coords}
 
-3. INTERFACE LLM (llm/interface.py)
-   ├─ Carregar solutions_data.json
-   ├─ Inicializar LangChain + OpenAI
-   ├─ Conectar ao Chroma DB
-   └─ Abrir chat interativo (Streamlit)
+3. INTERFACE LLM (llm/interface.py) - Assistente Conversacional
+   ├─ Auto-load: solutions_data.json
+   ├─ Inicializar clientes
+   │  ├─ LangChainClient: RAG + Similarity Search (k=4)
+   │  └─ OpenAIClient: GPT-4o-mini (temp=0.2)
+   │
+   ├─ Conectar Vector Store: Chroma DB
+   ├─ Interface Web: Streamlit (http://localhost:8501)
+   └─ Chat History: Session State persistente
 
-4. CONSULTAS
-   ├─ Usuário faz pergunta
-   ├─ Sistema busca contexto relevante (RAG)
-   ├─ GPT gera resposta contextualizada
-   └─ Exibe resposta com fontes
+4. LOOP CONVERSACIONAL
+   ├─ Usuário: pergunta em linguagem natural
+   │
+   ├─ Sistema RAG:
+   │  ├─ Embedding da query
+   │  ├─ Similarity search no Chroma (top-4 docs)
+   │  ├─ Recuperar contexto relevante
+   │  └─ Injetar solutions_data.json
+   │
+   ├─ GPT-4o-mini:
+   │  ├─ Processar: contexto + dados + pergunta
+   │  ├─ Gerar resposta fundamentada
+   │  └─ Limitar: 1500 tokens
+   │
+   └─ Output:
+      ├─ Resposta contextualizada
+      └─ Fontes: documentos .md usados
 ```
 
-**Comandos Sequenciais**:
-```bash
-# Terminal 1: Executar otimização
-python run.py
-# Output: solutions_data.json + mapas + vector store
+**Comandos de Execução**:
 
-# Terminal 2: Iniciar interface
+```bash
+# ========================================
+# FASE 1: OTIMIZAÇÃO (Tempo: ~2-8 horas)
+# ========================================
+
+# Ativar ambiente virtual
+.\venv\Scripts\Activate.ps1  # Windows PowerShell
+# ou
+source venv/bin/activate     # Linux/Mac
+
+# Executar algoritmo genético (20 iterações × 2000 gerações)
+python run.py
+
+# Outputs gerados:
+# ✓ llm/solutions_data.json (dados das soluções)
+# ✓ llm/chroma/ (vector database)
+# ✓ itinerary_routes/routes_maps/fitness/*.html (mapas interativos)
+# ✓ itinerary_routes/routes_maps/metrics/*.html
+# ✓ itinerary_routes/routes_maps/fitness/*.png (mapas estáticos)
+# ✓ itinerary_routes/routes_maps/metrics/*.png
+
+# ========================================
+# FASE 2: INTERFACE LLM (Terminal separado)
+# ========================================
+
+cd llm
+streamlit run interface.py
+
+# Acesse no navegador:
+# http://localhost:8501
+
+# Interface disponibiliza:
+# • Chat conversacional em português
+# • Consultas sobre algoritmo genético
+# • Análise das 20 soluções encontradas
+# • Explicações de métricas e rotas
+# • Comparação de configurações
+```
+
+**Exemplos Práticos de Consultas no Chat**:
+
+1. **Análise de Resultados**:
+   - "Qual foi a melhor solução entre as 20 iterações?"
+   - "Compare o desempenho da iteração 5 vs iteração 12"
+   - "Qual configuração de parâmetros teve melhor fitness?"
+   - "Mostre estatísticas de utilização de capacidade"
+
+2. **Entendimento do Algoritmo**:
+   - "Como funciona o crossover BCRC?"
+   - "Explique a função de fitness em detalhes"
+   - "Qual a diferença entre RBX e BCRC?"
+   - "Por que usar distância Manhattan ao invés de euclidiana?"
+
+3. **Rastreabilidade de Rotas**:
+   - "Mostre a sequência completa da rota 1"
+   - "Quais hospitais foram visitados na rota 3?"
+   - "Liste todas as entregas críticas e suas posições"
+   - "Qual veículo fez mais viagens?"
+
+4. **Otimização e Decisão**:
+   - "Por que a solução por metrics é diferente da por fitness?"
+   - "Quais entregas têm prioridade crítica?"
+   - "Sugira melhorias na configuração de parâmetros"
+   - "Explique o trade-off entre custo e prioridade"
+
+5. **Dados Técnicos**:
+   - "Quantas unidades de carga cada veículo suporta?"
+   - "Liste todos os hospitais Einstein no sistema"
+   - "Qual a autonomia do veículo V3?"
+   - "Mostre a demanda total de todas as entregas"
+
+---
+
+## 🤖 Sistema LLM/RAG - Assistente Inteligente
+
+### Visão Geral da Arquitetura
+
+O sistema integra **Retrieval-Augmented Generation (RAG)** com **Large Language Models (LLM)** para criar um assistente conversacional especializado em logística hospitalar. Esta funcionalidade representa a **principal inovação da versão 2.0**.
+
+```
+┌─────────────────────────────────────────────────────────┐
+│              STREAMLIT INTERFACE                        │
+│         (interface.py - Frontend Web)                   │
+└──────────────────────┬──────────────────────────────────┘
+                       │
+         ┌─────────────┴─────────────┐
+         ▼                           ▼
+┌──────────────────┐    ┌──────────────────┐
+│  LangChain RAG   │    │   OpenAI GPT-4   │
+│ (langchain_setup)│◄───┤  (openai_setup)  │
+└────────┬─────────┘    └──────────────────┘
+         │
+         ▼
+┌──────────────────────────────────────────┐
+│      CHROMA VECTOR DATABASE              │
+│  (chroma_db.py - Embeddings Storage)     │
+└────────────┬─────────────────────────────┘
+             │
+             ▼
+┌─────────────────────────────────────────────────────────┐
+│        KNOWLEDGE BASE (logistic_infos_docs/)            │
+├─────────────────────────────────────────────────────────┤
+│ • pipeline.md - Fluxo completo do AG                    │
+│ • generate_population.md - Geração de indivíduos        │
+│ • manhattan_distance.md - Cálculo de distâncias         │
+│ • fitness.md - Função de aptidão detalhada              │
+│ • crossover.md - Operadores de cruzamento               │
+│ • mutation.md - Operadores de mutação                   │
+│ • selection.md - Métodos de seleção                     │
+│ • routes_evaluation.md - Métricas de avaliação          │
+│ • deliveries.md - 25 pontos de entrega                  │
+│ • vehicles.md - 5 tipos de veículos                     │
+│ • solution_explanation.md - Estrutura de soluções       │
+└─────────────────────────────────────────────────────────┘
+             │
+             ▼
+┌─────────────────────────────────────────────────────────┐
+│         SOLUTIONS DATA (solutions_data.json)            │
+├─────────────────────────────────────────────────────────┤
+│ • best_by_fitness - Melhor solução por fitness          │
+│ • best_by_metrics - Melhor solução por métricas         │
+│ • all_solutions - Todas as 20 iterações                 │
+│ • routes_sequences - Sequências com nomes reais         │
+│ • metadata - Dados de veículos, entregas, depot         │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Componentes do Sistema LLM
+
+#### 1. **Base de Conhecimento (11 documentos .md)**
+
+A base de conhecimento foi **expandida significativamente na versão 2.0**, incluindo documentação detalhada de todos os módulos do algoritmo genético:
+
+| Documento | Descrição | Conteúdo Principal |
+|-----------|-----------|-------------------.|
+| `pipeline.md` | Fluxo completo do AG | 7 fases do algoritmo, loop evolutivo, critérios de seleção |
+| `generate_population.md` | Geração inicial | Distribuição aleatória, validação de restrições |
+| `manhattan_distance.md` | Cálculo de distâncias | Métrica urbana, complexidade O(1), fórmulas |
+| `fitness.md` | Função de aptidão | 5 componentes, pesos, penalidades, exemplos práticos |
+| `crossover.md` | Cruzamento genético | RBX, BCRC, preservação de rotas, probabilidades |
+| `mutation.md` | Mutação | Swap, Relocate, Light Mutation, diversificação |
+| `selection.md` | Seleção | Elitismo, Torneio, pressão seletiva |
+| `routes_evaluation.md` | Métricas | Capacidade, custos, prioridades críticas |
+| `deliveries.md` | Dados de entregas | 25 pontos, demandas (230 unidades), prioridades |
+| `vehicles.md` | Frota heterogênea | 5 tipos, capacidades (6-45 un), custos, autonomia |
+| `solution_explanation.md` | Estrutura de soluções | Campos JSON, routes_sequences, exemplos de análise |
+
+**Total**: ~15.000 palavras de documentação técnica otimizada para RAG.
+
+#### 2. **Chroma Vector Database** (`chroma_db.py`)
+
+**Responsabilidades**:
+- 📦 **Carregamento**: Lê todos os arquivos .md da base de conhecimento
+- ✂️ **Chunking**: Divide textos em fragmentos de 450 caracteres (overlap: 100)
+- 🧮 **Embeddings**: Gera vetores usando OpenAI Embeddings (text-embedding-ada-002)
+- 💾 **Persistência**: Armazena vetores no Chroma DB local
+- 🔍 **Recuperação**: Similarity search com k=4 documentos mais relevantes
+
+**Implementação**:
+```python
+from langchain_community.document_loaders import DirectoryLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_chroma import Chroma
+from langchain_openai import OpenAIEmbeddings
+
+# Configuração otimizada para contexto técnico
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=450,        # Tamanho ideal para conceitos técnicos
+    chunk_overlap=100,     # Mantém contexto entre chunks
+    length_function=len,
+    is_separator_regex=False,
+)
+```
+
+#### 3. **LangChain RAG Client** (`langchain_setup.py`)
+
+**Fluxo RAG**:
+1. 🔎 **Query**: Recebe pergunta do usuário
+2. 🎯 **Similarity Search**: Busca top-4 documentos relevantes no Chroma
+3. 📝 **Context Building**: Concatena documentos recuperados
+4. 🤖 **Prompt Engineering**: Injeta contexto + soluções + pergunta
+5. 💬 **GPT Response**: Envia para OpenAI e retorna resposta contextualizada
+6. 📚 **Source Attribution**: Adiciona fontes dos documentos usados
+
+**Template de Prompt**:
+```python
+prompt = f"""
+Responda como um assistente especialista em logística e roteirização de veículos.
+Seja objetivo e direto ao ponto, como numa conversa profissional.
+Use as informações fornecidas no contexto para fundamentar suas respostas.
+
+{context}  # Documentação técnica do Chroma
+
+Soluções do algoritmo genético:
+{solutions_metadata}  # JSON com resultados reais
+
+Pergunta: {question}
+"""
+```
+
+#### 4. **OpenAI GPT-4o-mini Client** (`openai_setup.py`)
+
+**Configuração**:
+- 🧠 **Modelo**: gpt-4o-mini (rápido, custo-efetivo)
+- 🌡️ **Temperature**: 0.2 (respostas mais determinísticas)
+- 📏 **Max Tokens**: 1500 (respostas detalhadas mas concisas)
+
+#### 5. **Streamlit Interface** (`interface.py`)
+
+**Funcionalidades**:
+- 💬 **Chat interativo**: Interface conversacional estilo ChatGPT
+- 📊 **Auto-loading**: Carrega `solutions_data.json` automaticamente
+- 🧹 **Limpar histórico**: Botão para reiniciar conversa
+- 💾 **Session state**: Mantém histórico durante a sessão
+- 🎨 **UI responsiva**: Design limpo com streamlit-chat
+
+**Exemplo de Uso**:
+```bash
+# Terminal 1: Gerar soluções e vector store
+python run.py
+
+# Terminal 2: Lançar interface
 cd llm
 streamlit run interface.py
 # Acesse: http://localhost:8501
 ```
 
-**Exemplo de Consultas no Chat**:
-- "Qual a melhor solução encontrada?"
-- "Quantas entregas críticas foram priorizadas?"
-- "Explique a diferença entre fitness e metrics"
-- "Qual veículo teve maior utilização?"
-- "Mostre a sequência da rota 1"
+### Exemplos de Consultas Inteligentes
+
+#### 1. **Análise de Soluções**
+```
+Usuário: "Qual foi a melhor solução encontrada pelo algoritmo?"
+
+Assistente: "A melhor solução por fitness foi encontrada na iteração 5,
+geração 1847, com fitness de 856.34. Esta solução utilizou 8 rotas
+distribuídas entre 5 veículos, com utilização de capacidade de 87%
+e custo total de viagem de R$ 1.234,56. A solução priorizou 4 entregas
+críticas nas primeiras rotas."
+```
+
+#### 2. **Explicação Técnica**
+```
+Usuário: "Como funciona o operador de crossover BCRC?"
+
+Assistente: "O BCRC (Best Cost Route Combination) extrai uma sub-rota
+de um pai e testa todas as posições possíveis de inserção no outro pai,
+selecionando a que resulta em menor distância Manhattan. Este operador
+combina exploração (herança genética) com otimização local (busca da
+melhor posição). É usado em 50% dos cruzamentos, alternando com RBX."
+```
+
+#### 3. **Rastreabilidade de Rotas**
+```
+Usuário: "Mostre a sequência da rota 1 da melhor solução"
+
+Assistente: "Rota 1 (Veículo V1):
+Centro de Distribuição → Einstein Alphaville (Entrega #23) → 
+Einstein Morumbi (Entrega #5) → Einstein Ibirapuera (Entrega #12) →
+Centro de Distribuição
+
+Total: 3 entregas, 43 unidades de carga, distância: 45.3 km"
+```
+
+#### 4. **Comparação de Estratégias**
+```
+Usuário: "Qual a diferença entre best_by_fitness e best_by_metrics?"
+
+Assistente: "best_by_fitness minimiza a função objetivo completa
+(custo + penalidades), focando em viabilidade operacional. 
+best_by_metrics otimiza uma pontuação ponderada de 3 KPIs:
+utilização de capacidade (20%), custos de viagem (40%) e
+entregas críticas (40%). Use fitness para operação diária
+e metrics para planejamento estratégico."
+```
+
+### Integração com Algoritmo Genético
+
+**Geração Automática do Vector Store**:
+
+O `run.py` executa automaticamente a geração do vector store após otimização:
+
+```python
+from llm.chroma_db import main as generate_data_store
+
+print("Generating vector store for RAG system...")
+generate_data_store()  # Processa todos os .md e cria embeddings
+
+# Salva soluções com routes_sequences
+solutions_output = {
+    'best_solutions': best_solutions_converted,
+    'all_solutions': solutions.solutions,
+    'metadata': {...}
+}
+
+with open('llm/solutions_data.json', 'w') as f:
+    json.dump(solutions_output, f, indent=4, ensure_ascii=False)
+```
+
+**Routes Sequences com Nomes Reais**:
+
+Nova funcionalidade que mapeia coordenadas para nomes de hospitais:
+
+```python
+def get_unit_name(delivery_id, delivery_data):
+    """Busca nome real do hospital usando einstein_units"""
+    coords = (delivery_data[delivery_id]['lat'], 
+              delivery_data[delivery_id]['lon'])
+    return hospitalar_units_lat_lon.get(coords, f"Entrega #{delivery_id}")
+
+def create_route_sequences(solution, delivery_data):
+    """Gera sequências legíveis: Centro -> Hospital A -> Hospital B -> Centro"""
+    return {
+        route_id: f"Centro de Distribuição -> " + 
+                  " -> ".join([f"{get_unit_name(did, delivery_data)} (Entrega #{did})" 
+                              for did, _ in route_deliveries]) + 
+                  " -> Centro de Distribuição"
+        for route_id, route_deliveries in solution['routes_metadata'].items()
+    }
+```
+
+### Benefícios da Versão 2.0
+
+#### ✨ **Transparência**
+- Usuários entendem **como** e **por que** o algoritmo tomou decisões
+- Explicações baseadas em documentação técnica real
+- Rastreabilidade completa com nomes de hospitais
+
+#### 🚀 **Produtividade**
+- Sem necessidade de ler código-fonte
+- Respostas instantâneas sobre qualquer aspecto do sistema
+- Interface conversacional natural
+
+#### 📊 **Análise de Resultados**
+- Comparação automática entre 20 configurações
+- Identificação de melhores estratégias
+- Insights sobre trade-offs (custo vs prioridade vs capacidade)
+
+#### 🧠 **Tomada de Decisão**
+- Recomendações contextualizadas
+- Explicação de métricas complexas
+- Sugestões de melhorias baseadas em dados reais
 
 ---
 
@@ -867,13 +1254,14 @@ O sistema gera duas soluções:
 | googlemaps | 4.10.0 | Cliente Python Google Maps |
 | polyline | 2.0.4 | Codificação/decodificação polylines |
 
-### Visualização
+### Visualização e Geolocalização
 
 | Tecnologia | Versão | Uso |
 |------------|--------|-----|
-| Folium | 0.20.0 | Mapas interativos (Leaflet.js) |
-| staticmap | 0.5.7 | Mapas estáticos PNG |
-| Pillow | 12.1.0 | Manipulação de imagens |
+| Folium | 0.20.0 | Mapas interativos HTML (Leaflet.js) |
+| staticmap | 0.5.7 | Mapas estáticos PNG (alta resolução) |
+| Pillow | 12.1.0 | Processamento e manipulação de imagens |
+| xyzservices | 2025.11.0 | Provedores de tiles para mapas base |
 
 ### LLM e RAG
 
@@ -1060,12 +1448,23 @@ Este projeto aborda uma variante complexa do VRP clássico:
    - Geração automática de relatórios
    - Sugestões proativas de otimizações
 
-4. **Visualizações Avançadas**:
-   - Dashboard interativo com métricas em tempo real
-   - Animações de evolução do AG
-   - Gráficos de convergência
-   - Comparação visual de soluções
-   - Integração de mapas na interface do chat
+4. **Expansão do Sistema LLM**:
+   - Fine-tuning de modelo GPT para domínio logístico hospitalar
+   - Suporte multilíngue (inglês, espanhol)
+   - Histórico persistente de conversas em banco de dados
+   - Geração automática de relatórios PDF/Excel
+   - Sugestões proativas de otimizações
+   - Análise comparativa automática das 20 configurações
+   - Alertas inteligentes para violações de restrições
+
+5. **Visualizações Avançadas**:
+   - Dashboard interativo com métricas em tempo real (Plotly/Dash)
+   - Animações de evolução do AG (gerações 1→2000)
+   - Gráficos de convergência (fitness vs gerações)
+   - Heatmaps de utilização de veículos
+   - Comparação lado-a-lado de soluções (fitness vs metrics)
+   - Integração de mapas na interface do chat Streamlit
+   - Timeline interativo de entregas por rota
 
 4. **Machine Learning**:
    - Aprendizado de hiperparâmetros via Bayesian Optimization
