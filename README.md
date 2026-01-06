@@ -10,6 +10,7 @@
 - [Módulos do Sistema](#-módulos-do-sistema)
 - [Instalação e Execução](#-instalação-e-execução)
 - [Resultados e Visualizações](#-resultados-e-visualizações)
+- [Sistema LLM/RAG](#-sistema-llmrag---assistente-inteligente)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 
 ---
@@ -25,6 +26,7 @@ Este projeto implementa um **sistema inteligente de otimização de rotas** para
 3. **Priorizar entregas críticas** (medicamentos, materiais cirúrgicos)
 4. **Respeitar restrições** de capacidade e autonomia dos veículos
 5. **Gerar visualizações** georreferenciadas das rotas otimizadas
+6. **Assistente inteligente** com LLM para consultas sobre logística e soluções
 
 ---
 
@@ -246,12 +248,25 @@ Desafio Fase 2/
 │   ├── distribute_center.py       # 🏢 Centro de distribuição
 │   └── unify_coordinates.py       # 📐 Unificação de coordenadas
 │
-└── itinerary_routes/              # 🛣️ Visualização de rotas
-    ├── a_google_maps.py           # 🌍 API Google Maps
-    ├── b_polyline_designer.py     # ✏️ Desenho de polylines
-    ├── c_folium_path.py           # 🗺️ Mapas interativos
-    ├── d_static_map.py            # 📸 Mapas estáticos
-    └── _solution_type.py          # 🏷️ Enums de solução
+├── itinerary_routes/              # 🛣️ Visualização de rotas
+│   ├── a_google_maps.py           # 🌍 API Google Maps
+│   ├── b_polyline_designer.py     # ✏️ Desenho de polylines
+│   ├── c_folium_path.py           # 🗺️ Mapas interativos
+│   ├── d_static_map.py            # 📸 Mapas estáticos
+│   └── _solution_type.py          # 🏷️ Enums de solução
+│
+└── llm/                           # 🤖 Assistente Inteligente (RAG)
+    ├── interface.py               # 💬 Interface Streamlit
+    ├── langchain_setup.py         # 🔗 Cliente LangChain
+    ├── openai_setup.py            # 🧠 Cliente OpenAI
+    ├── chroma_db.py               # 💾 Vector Store (Chroma)
+    ├── solutions_data.json        # 📊 Dados das soluções
+    ├── chroma/                    # 📦 Banco vetorial
+    └── logistic_infos_docs/       # 📚 Documentação RAG
+        ├── pipeline.md            # Pipeline do AG
+        ├── deliveries.md          # Dados de entregas
+        ├── vehicles.md            # Dados de veículos
+        └── solution_explanation.md # Estrutura de soluções
 ```
 
 ---
@@ -624,12 +639,17 @@ source venv/bin/activate  # Linux/Mac
 # 3. Instale dependências
 pip install -r requirements.txt
 
-# 4. Configure API Key
+# 4. Configure API Keys
 # Crie arquivo .env na raiz:
-echo "GOOGLE_MAPS_API_KEY=sua_chave_aqui" > .env
+echo "GOOGLE_MAPS_API_KEY=sua_chave_google_aqui" > .env
+echo "OPENAI_API_KEY=sua_chave_openai_aqui" >> .env
 
-# 5. Execute
+# 5. Execute o Algoritmo Genético
 python run.py
+
+# 6. Execute a Interface LLM (em outro terminal)
+cd llm
+streamlit run interface.py
 ```
 
 ### Execução com Docker
@@ -665,6 +685,52 @@ solutions.heuristic_loop(
 - Testa diferentes combinações de parâmetros
 - Cada tupla deve ter tamanho igual a `total_iterations`
 - Permite exploração do espaço de hiperparâmetros
+
+### Fluxo de Execução Completo
+
+```
+1. PREPARAÇÃO
+   ├─ Carregar dados (entregas, veículos, coordenadas)
+   └─ Configurar parâmetros do AG
+
+2. OTIMIZAÇÃO (run.py)
+   ├─ Executar 5 iterações do AG
+   ├─ Selecionar melhores soluções (fitness vs metrics)
+   ├─ Gerar mapas das rotas (Google Maps + Folium)
+   ├─ Criar vector store (Chroma DB)
+   └─ Salvar solutions_data.json
+
+3. INTERFACE LLM (llm/interface.py)
+   ├─ Carregar solutions_data.json
+   ├─ Inicializar LangChain + OpenAI
+   ├─ Conectar ao Chroma DB
+   └─ Abrir chat interativo (Streamlit)
+
+4. CONSULTAS
+   ├─ Usuário faz pergunta
+   ├─ Sistema busca contexto relevante (RAG)
+   ├─ GPT gera resposta contextualizada
+   └─ Exibe resposta com fontes
+```
+
+**Comandos Sequenciais**:
+```bash
+# Terminal 1: Executar otimização
+python run.py
+# Output: solutions_data.json + mapas + vector store
+
+# Terminal 2: Iniciar interface
+cd llm
+streamlit run interface.py
+# Acesse: http://localhost:8501
+```
+
+**Exemplo de Consultas no Chat**:
+- "Qual a melhor solução encontrada?"
+- "Quantas entregas críticas foram priorizadas?"
+- "Explique a diferença entre fitness e metrics"
+- "Qual veículo teve maior utilização?"
+- "Mostre a sequência da rota 1"
 
 ---
 
@@ -709,15 +775,34 @@ Detalhes das rotas:
   ...
 ```
 
-#### 2. **Métricas de Avaliação**
+#### 2. **Estrutura Completa da Solução**
 
 ```python
 {
-    "capacity_utilization_metric_positive": 0.87,  # 87% utilização média
-    "travel_costs_metric_negative": 1234.56,       # R$ 1234.56 em custos
-    "critical_delivery_metric_positive": 8.4       # Score de entregas críticas
+    "iteration": 3,
+    "generation": 241,
+    "fitness": 923.44,
+    "routes_metadata": {
+        1: [(23, 'V1'), (2, 'V1'), (15, 'V1')],
+        # ...
+    },
+    "routes_sequences": {
+        1: "Centro de Distribuição -> Einstein Alphaville (Entrega #23) -> Einstein Alphaville (Entrega #2) -> Einstein Alphaville (Entrega #15) -> Centro de Distribuição",
+        # ...
+    },
+    "metrics": {
+        "capacity_utilization_metric_positive": 0.87,
+        "travel_costs_metric_negative": 1234.56,
+        "critical_delivery_metric_positive": 8.4
+    }
 }
 ```
+
+**Campo `routes_sequences`**:
+- ✅ Rastreabilidade automática com nomes de hospitais
+- ✅ Formato legível para humanos
+- ✅ Gerado usando `address_routes.einstein_units`
+- ✅ Validação rápida da lógica geográfica
 
 #### 3. **Mapas Interativos (HTML)**
 
@@ -790,6 +875,19 @@ O sistema gera duas soluções:
 | staticmap | 0.5.7 | Mapas estáticos PNG |
 | Pillow | 12.1.0 | Manipulação de imagens |
 
+### LLM e RAG
+
+| Tecnologia | Versão | Uso |
+|------------|--------|-----|
+| OpenAI API | - | GPT-4o-mini para respostas |
+| LangChain | 0.3.16 | Framework RAG |
+| langchain-community | 0.3.16 | Integrações LangChain |
+| langchain-openai | 0.3.0 | Cliente OpenAI |
+| langchain-chroma | 0.2.1 | Vector store Chroma |
+| Chroma | 0.6.4 | Banco de dados vetorial |
+| Streamlit | 1.42.0 | Interface web |
+| streamlit-chat | 0.2.0 | Componente de chat |
+
 ### Infraestrutura
 
 | Tecnologia | Versão | Uso |
@@ -800,7 +898,25 @@ O sistema gera duas soluções:
 ### Estrutura Completa de Dependências
 
 ```
+# Core
 attrs==25.4.0              # Classes e decorators
+numpy==2.4.0               # Operações numéricas
+python-dotenv==1.2.1       # Variáveis de ambiente
+
+# LLM e RAG
+openai==1.59.7             # Cliente OpenAI
+langchain==0.3.16          # Framework RAG
+langchain-community==0.3.16  # Integrações
+langchain-openai==0.3.0    # Cliente OpenAI LangChain
+langchain-chroma==0.2.1    # Vector store
+langchain-core==0.3.28     # Core LangChain
+langchain-text-splitters==0.3.4  # Divisão de textos
+chroma==0.2.0              # Vector DB (compat)
+chromadb==0.6.4            # Vector database
+streamlit==1.42.0          # Interface web
+streamlit-chat==0.2.0      # Chat UI
+
+# Visualização
 branca==0.8.2              # Templating para Folium
 certifi==2025.11.12        # Certificados SSL
 cffi==2.0.0                # Interface C para Python
@@ -936,11 +1052,20 @@ Este projeto aborda uma variante complexa do VRP clássico:
    - Modelar tempo de carga/descarga
    - Restrições de tipo de veículo por entrega
 
-3. **Visualizações Avançadas**:
-   - Dashboard interativo (Dash/Streamlit)
+3. **Melhorias no Sistema LLM/RAG**:
+   - Fine-tuning de modelo para domínio logístico
+   - Expansão da base de conhecimento (documentação)
+   - Suporte a multi-idiomas
+   - Histórico persistente de conversas
+   - Geração automática de relatórios
+   - Sugestões proativas de otimizações
+
+4. **Visualizações Avançadas**:
+   - Dashboard interativo com métricas em tempo real
    - Animações de evolução do AG
    - Gráficos de convergência
    - Comparação visual de soluções
+   - Integração de mapas na interface do chat
 
 4. **Machine Learning**:
    - Aprendizado de hiperparâmetros via Bayesian Optimization

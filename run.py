@@ -81,15 +81,16 @@ class Solution:
         }
 
 if __name__ == "__main__":
-    solutions = Solution(total_iterations=5)
+    solutions = Solution(total_iterations=20)
+    city_code = "SP"
 
     solutions.heuristic_loop(
-        city_code="SP",
-        population_length=(100, 50, 100, 50, 80),
-        max_generations=(50, 150, 250, 350, 450),
-        ratio_elitism=(0.1, 0.2, 0.05, 0.03, 0.15),
-        ratio_mutation=(0.05, 0.25, 0.5, 0.3, 0.1),
-        tournament_k=(2, 5, 3, 3, 2)
+        city_code=city_code,
+        population_length=(80, 150, 50, 60, 200, 30, 100, 120, 120, 70, 180, 90, 100, 250, 100, 100, 80, 80, 150, 100),
+        max_generations=(200, 150, 250, 100, 400, 500, 200, 300, 300, 200, 180, 150, 250, 200, 500, 250, 200, 200, 300, 350),
+        ratio_elitism=(0.05, 0.02, 0.15, 0.10, 0.05, 0.03, 0.07, 0.05, 0.10, 0.20, 0.04, 0.30, 0.08, 0.05, 0.06, 0.10, 0.12, 0.08, 0.10, 0.05),
+        ratio_mutation=(0.3, 0.25, 0.1, 0.5, 0.4, 0.12, 0.02, 0.2, 0.10, 0.2, 0.2, 0.5, 0.35, 0.3, 0.1, 0.5, 0.4, 0.4, 0.6, 0.8),
+        tournament_k=(3, 2, 5, 4, 3, 2, 3, 4, 4, 6, 2, 5, 4, 3, 5, 3, 7, 2, 4, 5)
     )
 
     best_solutions = solutions.best_solution()
@@ -128,3 +129,72 @@ if __name__ == "__main__":
             static_map_route = StaticMapRoute(coords, leg_starts, iterator=solution['iteration'], generation=solution['generation'], route_id=route)
             static_map_route.create_static_map(sol_method)
             solution_deliveries = []  # Reset for next route
+
+    from llm.chroma_db import main as generate_data_store
+    from address_routes.einstein_units import hospitalar_units_lat_lon
+    import json
+    import numpy as np
+
+    def convert_numpy_types(obj):
+        """
+        Recursively convert numpy types to native Python types for JSON serialization
+        """
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, dict):
+            return {key: convert_numpy_types(value) for key, value in obj.items()}
+        elif isinstance(obj, list):
+            return [convert_numpy_types(item) for item in obj]
+        elif isinstance(obj, tuple):
+            return tuple(convert_numpy_types(item) for item in obj)
+        else:
+            return obj
+
+    # Generate the vector store with documentation
+    print("\n" + "="*70)
+    print("Generating vector store for RAG system...")
+    print("="*70)
+    generate_data_store()
+    
+    def get_unit_name(did, dd, cc: str = city_code):
+        d = dd[did]
+        return next((n for n, (rlat, rlon) in hospitalar_units_lat_lon.get(cc, {}).items() 
+                    if abs(d['lat']-rlat)<0.0001 and abs(d['lon']-rlon)<0.0001), f"Unidade Einstein (Entrega #{did})")
+    
+    def create_route_sequences(sol, dd, dn="Centro de Distribuição"):
+        return {rid: f"{dn} -> " + " -> ".join([f"{get_unit_name(did, dd)} (Entrega #{did})" 
+                for did, _ in rd]) + f" -> {dn}" for rid, rd in sol['routes_metadata'].items()}
+    
+    # Convert numpy types to native Python types before saving
+    best_solutions_converted = convert_numpy_types(best_solutions)
+    
+    # Add route sequences with hospital names to both best solutions
+    for key in ['best_by_fitness', 'best_by_metrics']:
+        best_solutions_converted[key]['routes_sequences'] = create_route_sequences(
+            best_solutions_converted[key], solutions.delivery_data)
+    
+    solutions_output = {
+        'best_solutions': best_solutions_converted,
+        'all_solutions': convert_numpy_types(solutions.solutions),
+        'metadata': {
+            'vehicle_data': convert_numpy_types(solutions.vehicle_data),
+            'delivery_data': convert_numpy_types(solutions.delivery_data),
+            'depot_coords': convert_numpy_types(solutions.depot_coords)
+        }
+    }
+    
+    solutions_file = 'llm/solutions_data.json'
+    with open(solutions_file, 'w', encoding='utf-8') as f:
+        json.dump(solutions_output, f, indent=4, ensure_ascii=False)
+    
+    print("\n" + "="*70)
+    print(f"Solutions saved to: {solutions_file}")
+    print("="*70)
+    print("\nTo launch the Streamlit interface, run:")
+    print("  cd llm")
+    print("  streamlit run interface.py")
+    print("="*70)

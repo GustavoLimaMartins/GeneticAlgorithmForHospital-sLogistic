@@ -1,4 +1,4 @@
-from langchain_community.document_loaders import DirectoryLoader, UnstructuredWordDocumentLoader
+from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
@@ -8,8 +8,11 @@ from dotenv import load_dotenv
 import os
 import shutil
 
-CHROMA_PATH = "chroma"
-DATA_PATH = "./logistic_infos_docs"
+# Get the directory where this script is located
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CHROMA_PATH = os.path.join(SCRIPT_DIR, "chroma")
+DATA_PATH = os.path.join(SCRIPT_DIR, "logistic_infos_docs")
+
 load_dotenv()
 openai.api_key = os.environ['OPENAI_API_KEY']
 
@@ -22,14 +25,20 @@ def generate_data_store():
     save_to_chroma(chunks)
 
 def load_documentos():
-
-    loader = DirectoryLoader(DATA_PATH, loader_cls=UnstructuredWordDocumentLoader)
+    # Carregar arquivos Markdown (.md)
+    loader = DirectoryLoader(
+        DATA_PATH, 
+        glob="**/*.md",
+        loader_cls=TextLoader,
+        loader_kwargs={'encoding': 'utf-8'}
+    )
     docs = loader.load()
+    print(f"Loaded {len(docs)} documents from {DATA_PATH}")
     return docs
 
 def split_text(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=300,
+        chunk_size=450,
         chunk_overlap=100,
         length_function=len,
         add_start_index=True,

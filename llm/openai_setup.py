@@ -10,7 +10,7 @@ class OpenAIClient:
         else:
             self.client = OpenAI(api_key=api_key)
 
-    def get_response_from_gpt(self, prompt_template: function, model: str = "gpt-4.1-mini", temperature: float = 0.2, max_tokens: int = 1500) -> str:
+    def get_response_from_gpt(self, prompt_template, model: str = "gpt-4.1-mini", temperature: float = 0.2, max_tokens: int = 1500) -> str:
         response = self.client.chat.completions.create(
             model=model,
             messages=[
@@ -20,4 +20,4 @@ class OpenAIClient:
             temperature=temperature,
             max_tokens=max_tokens
         )
-        return response.choices[0].message['content'].strip()
+        return response.choices[0].message.content.strip()
