@@ -201,6 +201,16 @@ $$
 │ • encode      │   │ • decode         │   │ • crossover  │
 │ • decode      │   │ • distance       │   │ • mutation   │
 └───────────────┘   └──────────────────┘   └──────────────┘
+        │                     │                     │
+        └─────────────────────┴─────────────────────┘
+                              ▼
+                 ┌──────────────────────┐
+                 │  Visualização Stats  │
+                 │                      │
+                 │ • plot_fitness_      │
+                 │   evolution          │
+                 │ • fitness_history    │
+                 └──────────────────────┘
                               │
         ┌─────────────────────┴─────────────────────┐
         ▼                                           ▼
@@ -316,7 +326,8 @@ chromosome = [1, 4, 9, 2, 7, 12, 3, 8, 15, ...]  # Sequência linear
    ├─ AVALIAÇÃO
    │  ├─ Decodificar cromossomos em rotas
    │  ├─ Calcular fitness de cada indivíduo
-   │  └─ Registrar melhor solução
+   │  ├─ Registrar estatísticas (melhor, média, pior)
+   │  └─ Atualizar fitness_history
    │
    ├─ SELEÇÃO
    │  ├─ Elitismo: preservar melhores (ratio_elitism)
@@ -332,7 +343,8 @@ chromosome = [1, 4, 9, 2, 7, 12, 3, 8, 15, ...]  # Sequência linear
 3. FINALIZAÇÃO
    ├─ Retornar melhor solução encontrada
    ├─ Decodificar em rotas finais
-   └─ Gerar visualizações
+   ├─ Gerar gráfico de evolução (fitness x gerações)
+   └─ Gerar visualizações de rotas
 ```
 
 ### Parâmetros do Algoritmo
@@ -431,14 +443,36 @@ Torneio k=3:
 - Gerenciamento de população
 - Loop de gerações
 - Coleta de estatísticas
+- Visualização de evolução
 
 **Métodos Principais**:
 ```python
 def __init__(city_code, max_generations, population_length, 
              ratio_elitism, ratio_mutation, tournament_k)
-def run() -> dict[str, any]  # Executa AG completo
+def run(iterator) -> dict[str, any]  # Executa AG completo
 def routes_summary() -> dict  # Sumariza rotas finais
+def plot_fitness_evolution(save_path) -> None  # Gera gráfico de evolução
 ```
+
+**Rastreamento de Evolução**:
+```python
+# Estrutura fitness_history
+self.fitness_history = {
+    'generation': [],  # Número da geração
+    'best': [],        # Melhor fitness da geração
+    'avg': [],         # Fitness médio da geração
+    'worst': []        # Pior fitness da geração
+}
+```
+
+**Gráfico de Evolução**:
+O método `plot_fitness_evolution()` gera automaticamente um gráfico PNG mostrando:
+- **Linha verde**: Evolução do melhor fitness (best)
+- **Linha azul tracejada**: Evolução do fitness médio (avg)
+- **Linha vermelha semi-transparente**: Evolução do pior fitness (worst)
+- **Anotação amarela**: Destaca o melhor valor global encontrado
+- **Dimensões**: 12x6 polegadas, resolução 300 DPI
+- **Salvo em**: `fitness_balance/i{iterator}_fitness_evolution.png`
 
 #### `c_fitness.py`
 **Função Principal**: `calculate_fitness(solution, city) -> float`
@@ -797,6 +831,7 @@ python run.py
 # ✓ itinerary_routes/routes_maps/metrics/*.html
 # ✓ itinerary_routes/routes_maps/fitness/*.png (mapas estáticos)
 # ✓ itinerary_routes/routes_maps/metrics/*.png
+# ✓ fitness_balance/i*_fitness_evolution.png (gráficos de evolução)
 
 # ========================================
 # FASE 2: INTERFACE LLM (Terminal separado)
@@ -1215,6 +1250,38 @@ itinerary_routes/routes_maps/fitness/i5_by_fitness_1route_map_450gen.html
 itinerary_routes/routes_maps/fitness/i5_by_fitness_1route_map_450gen.png
 ```
 
+#### 5. **Gráficos de Evolução do Fitness (PNG)**
+
+- 📈 **Visualização da convergência** do algoritmo genético
+- 📊 **Três curvas simultâneas**:
+  - **Best Fitness** (verde, sólida): Melhor solução de cada geração
+  - **Average Fitness** (azul, tracejada): Qualidade média da população
+  - **Worst Fitness** (vermelho, semi-transparente): Pior indivíduo
+- 🎯 **Anotação automática**: Destaca melhor valor global (geração + fitness)
+- 📐 **Alta resolução**: 300 DPI, 12x6 polegadas (3600x1800 pixels)
+- 🔍 **Grade**: Auxilia leitura precisa dos valores
+- 📁 **Salvo em**: `fitness_balance/i{iterator}_fitness_evolution.png`
+
+**Utilidade**:
+- Verificar **convergência** do algoritmo (platô na curva best)
+- Identificar **estagnação prematura** (convergência antes de 2000 gerações)
+- Avaliar **diversidade populacional** (distância entre best e worst)
+- Comparar **eficácia de hiperparâmetros** entre iterações
+- Detectar **overfitting** (best melhora mas avg piora)
+
+**Exemplo de Arquivo**:
+```
+fitness_balance/i5_fitness_evolution.png
+fitness_balance/i12_fitness_evolution.png
+```
+
+**Interpretação**:
+- **Curva descendente suave**: Convergência saudável
+- **Platô precoce**: Pode indicar necessidade de mais mutação
+- **Oscilações**: Diversidade preservada, boa exploração
+- **Best e Avg próximos**: População homogênea (fim da evolução)
+- **Best muito abaixo de Avg**: Elitismo funcionando bem
+
 ### Interpretação de Resultados
 
 #### Comparação: Fitness vs Metrics
@@ -1234,6 +1301,43 @@ O sistema gera duas soluções:
 **Quando usar cada uma**:
 - **Fitness**: Operação do dia-a-dia, minimizar custos
 - **Metrics**: Planejamento estratégico, balanceamento de objetivos
+
+#### Análise dos Gráficos de Evolução do Fitness
+
+Os gráficos gerados pelo sistema (`fitness_balance/i*_fitness_evolution.png`) são ferramentas cruciais para avaliar o desempenho do algoritmo genético:
+
+**Padrões Saudáveis de Convergência**:
+1. **Curva Best (verde) descendente suave**: Indica convergência progressiva sem estagnação
+2. **Platô após 1500+ gerações**: Algoritmo explorou suficientemente o espaço de busca
+3. **Best e Average (azul) convergindo**: População está se homogeneizando ao redor de boas soluções
+4. **Gap entre Best e Worst (vermelho)**: Mostra diversidade populacional mantida
+
+**Sinais de Alerta**:
+1. **Platô antes de 500 gerações**: Possível convergência prematura
+   - Solução: Aumentar `ratio_mutation` ou reduzir `ratio_elitism`
+2. **Best muito distante de Average**: População não está evoluindo uniformemente
+   - Solução: Aumentar `tournament_k` para pressão seletiva maior
+3. **Oscilações bruscas em Best**: Instabilidade no processo evolutivo
+   - Solução: Reduzir `ratio_mutation` ou aumentar `ratio_elitism`
+4. **Average estagnado mas Best melhorando**: Elitismo excessivo
+   - Solução: Reduzir `ratio_elitism`
+
+**Comparação entre Iterações**:
+- Compare os 20 gráficos gerados para identificar qual configuração teve:
+  - **Melhor convergência**: Menor fitness final
+  - **Convergência mais rápida**: Platô em menos gerações
+  - **Maior estabilidade**: Curvas mais suaves
+  - **Melhor exploração**: Diversidade mantida por mais tempo
+
+**Uso Prático**:
+```python
+# Exemplo: Analisar se iteração 5 convergiu bem
+# Observar: fitness_balance/i5_fitness_evolution.png
+# - Best fitness final: ~856.34 (bom)
+# - Convergência em: ~1847 gerações (ótimo)
+# - Gap Best-Worst ao final: pequeno (população homogênea)
+# Conclusão: Configuração eficaz para o problema
+```
 
 ---
 
@@ -1260,6 +1364,7 @@ O sistema gera duas soluções:
 |------------|--------|-----|
 | Folium | 0.20.0 | Mapas interativos HTML (Leaflet.js) |
 | staticmap | 0.5.7 | Mapas estáticos PNG (alta resolução) |
+| matplotlib | 3.9.+ | Gráficos de evolução do fitness |
 | Pillow | 12.1.0 | Processamento e manipulação de imagens |
 | xyzservices | 2025.11.0 | Provedores de tiles para mapas base |
 
@@ -1315,6 +1420,7 @@ h11==0.16.0                # HTTP/1.1 client
 idna==3.11                 # Suporte a domínios internacionais
 Jinja2==3.1.6              # Template engine
 MarkupSafe==3.0.3          # Escape de strings HTML
+matplotlib==3.9.3          # Gráficos de evolução do fitness
 numpy==2.4.0               # Operações numéricas
 outcome==1.3.0.post0       # Resultados assíncronos
 packaging==25.0            # Parsing de versões
@@ -1460,18 +1566,20 @@ Este projeto aborda uma variante complexa do VRP clássico:
 5. **Visualizações Avançadas**:
    - Dashboard interativo com métricas em tempo real (Plotly/Dash)
    - Animações de evolução do AG (gerações 1→2000)
-   - Gráficos de convergência (fitness vs gerações)
+   - ✅ **Gráficos de convergência (fitness vs gerações) - IMPLEMENTADO**
+   - Análise comparativa visual entre as 20 configurações testadas
    - Heatmaps de utilização de veículos
    - Comparação lado-a-lado de soluções (fitness vs metrics)
    - Integração de mapas na interface do chat Streamlit
    - Timeline interativo de entregas por rota
+   - Gráficos de Pareto (trade-off custo vs prioridades)
 
-4. **Machine Learning**:
+6. **Machine Learning**:
    - Aprendizado de hiperparâmetros via Bayesian Optimization
    - Predição de fitness via regressão (acelerar avaliação)
    - Reinforcement Learning para guiar busca
 
-5. **Extensões de Negócio**:
+7. **Extensões de Negócio**:
    - Multi-objetivo explícito (Pareto frontier)
    - Planejamento multi-dia
    - Incerteza nas demandas (modelo estocástico)
