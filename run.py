@@ -25,7 +25,7 @@ class Solution:
                 ratio_mutation=ratio_mutation[index],
                 tournament_k=tournament_k[index]
             )
-            self.ga_metadata = ga.run()
+            self.ga_metadata = ga.run(iterator=index)
             self.vehicle_data = ga.vehicles
             self.delivery_data = ga.deliveries
             self.depot_coords = ga.depot
@@ -86,35 +86,26 @@ if __name__ == "__main__":
 
     solutions.heuristic_loop(
         city_code=city_code,
-        population_length = (
-            120, 150, 180, 200, 220,
-            250, 280, 300, 320, 350,
-            100, 140, 170, 210, 240,
-            270, 310, 340, 380, 400
+        population_length=(
+            350, 380, 420, 320, 400, 360, 300,   # Regime A (7)
+            300, 320, 340, 360, 280, 330, 350,   # Regime B (7)
+            260, 240, 280, 220, 250, 270         # Regime C (6)
         ),
-        max_generations = (
-            2000, 2000, 2000, 2000, 2000,
-            2000, 2000, 2000, 2000, 2000,
-            2000, 2000, 2000, 2000, 2000,
-            2000, 2000, 2000, 2000, 2000
+        max_generations=(2000,) * 20,
+        ratio_elitism=(
+            0.02, 0.02, 0.03, 0.02, 0.03, 0.03, 0.02,
+            0.03, 0.03, 0.04, 0.04, 0.03, 0.04, 0.03,
+            0.05, 0.05, 0.04, 0.06, 0.05, 0.04
         ),
-        ratio_elitism = (
-            0.02, 0.03, 0.03, 0.04, 0.04,
-            0.05, 0.05, 0.06, 0.06, 0.08,
-            0.03, 0.04, 0.05, 0.05, 0.06,
-            0.04, 0.05, 0.06, 0.07, 0.08
+        ratio_mutation=(
+            0.30, 0.28, 0.35, 0.32, 0.25, 0.27, 0.33,
+            0.18, 0.20, 0.15, 0.17, 0.22, 0.16, 0.19,
+            0.10, 0.12, 0.09, 0.08, 0.11, 0.10
         ),
-        ratio_mutation = (
-            0.12, 0.10, 0.08, 0.10, 0.08,
-            0.10, 0.08, 0.10, 0.12, 0.15,
-            0.05, 0.06, 0.08, 0.10, 0.12,
-            0.07, 0.09, 0.11, 0.13, 0.15
-        ),
-        tournament_k = (
-            2, 2, 3, 3, 3,
-            3, 3, 4, 4, 4,
-            2, 3, 3, 3, 4,
-            2, 3, 3, 4, 4
+        tournament_k=(
+            2, 2, 3, 2, 3, 3, 2,
+            3, 3, 4, 4, 3, 4, 3,
+            4, 4, 4, 4, 4, 4
         )
     )
 

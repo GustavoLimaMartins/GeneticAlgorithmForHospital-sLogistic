@@ -7,6 +7,7 @@ from e_mutation import light_mutation
 from address_routes.distribute_center import get_center_coordinates as depot_coords
 from delivery_setup.deliveries import load_deliveries_info as d_info
 from delivery_setup.vehicles import load_vehicles_info as v_info
+import matplotlib.pyplot as plt
 
 class GeneticAlgorithm:
     def __init__(self, city_code: str, max_generations: int, population_length: int, ratio_elitism: float, ratio_mutation: float, tournament_k: int):
@@ -69,8 +70,46 @@ class GeneticAlgorithm:
             'fitness': self.best_overall['fitness'],
             'routes_metadata': routes_metadata
         }
+    
+    def plot_fitness_evolution(self, save_path: str = None):
+        """
+        Plot a evolution of fitness values over generations.
+        
+        Args:
+            save_path: Optional path to save the plot. If None, just displays it.
+        """
+        plt.figure(figsize=(12, 6))
+        
+        plt.plot(self.fitness_history['generation'], self.fitness_history['best'], 
+                label='Best Fitness', linewidth=2, color='green')
+        plt.plot(self.fitness_history['generation'], self.fitness_history['avg'], 
+                label='Average Fitness', linewidth=2, color='blue', linestyle='--')
+        plt.plot(self.fitness_history['generation'], self.fitness_history['worst'], 
+                label='Worst Fitness', linewidth=1, color='red', alpha=0.5)
+        
+        plt.xlabel('Generation', fontsize=12)
+        plt.ylabel('Fitness', fontsize=12)
+        plt.title(f'Genetic Algorithm Evolution - City: {self.city_code}', fontsize=14, fontweight='bold')
+        plt.legend(loc='best', fontsize=10)
+        plt.grid(True, alpha=0.3)
+        
+        # Add annotation for the best value
+        best_gen = self.best_overall['generation']
+        best_fit = self.best_overall['fitness']
+        plt.annotate(f'Best: {best_fit:.2f}\n(Gen {best_gen})',
+                    xy=(best_gen, best_fit),
+                    xytext=(10, 20), textcoords='offset points',
+                    bbox=dict(boxstyle='round,pad=0.5', fc='yellow', alpha=0.7),
+                    arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0'))
+        
+        plt.tight_layout()
+        
+        if save_path:
+            plt.savefig(save_path, dpi=300, bbox_inches='tight')
+            print(f"Graph saved at: {save_path}")
+        #plt.show()
 
-    def run(self) -> dict[str, any]:
+    def run(self, iterator: int) -> dict[str, any]:
         initial_population = generate_population_coordinates(self.city_code, self.population_length)
 
         population = [
@@ -80,6 +119,14 @@ class GeneticAlgorithm:
 
         self.initial_message()
         self.best_overall = None
+        
+        # Track fitness evolution
+        self.fitness_history = {
+            'generation': [],
+            'best': [],
+            'avg': [],
+            'worst': []
+        }
 
         for generation in range(self.max_generations):
 
@@ -94,6 +141,12 @@ class GeneticAlgorithm:
             avg_fitness = sum(fitness_values) / len(fitness_values)
             worst_fitness = max(fitness_values)
             
+            # Save fitness history
+            self.fitness_history['generation'].append(generation)
+            self.fitness_history['best'].append(best_fitness)
+            self.fitness_history['avg'].append(avg_fitness)
+            self.fitness_history['worst'].append(worst_fitness)
+            
             best_individual = min(population, key=lambda x: x["fitness"])
             
             if self.best_overall is None or best_fitness < self.best_overall["fitness"]:
@@ -104,7 +157,7 @@ class GeneticAlgorithm:
                 }
             
             # Display progress
-            if generation % 10 == 0 or generation == self.max_generations - 1:
+            if generation % 100 == 0 or generation == self.max_generations - 1:
                 print(f"Geração {generation:3d} | Melhor: {best_fitness:.2f} | Média: {avg_fitness:.2f} | Pior: {worst_fitness:.2f}")
 
             # Selection
@@ -130,7 +183,12 @@ class GeneticAlgorithm:
             population = offspring
 
         self.final_message()
-        return self.routes_summary()
+        result = self.routes_summary()
+        
+        # Plot fitness evolution
+        self.plot_fitness_evolution(save_path=f'fitness_balance/i{iterator}_fitness_evolution.png')
+        
+        return result
 
 
 if __name__ == "__main__":
@@ -143,6 +201,6 @@ if __name__ == "__main__":
         ratio_mutation=0.5,
         tournament_k=3
     )
-    routes_metadata = ga.run()
+    routes_metadata = ga.run(iterator=1)
     print(routes_metadata)
 

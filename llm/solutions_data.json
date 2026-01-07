@@ -1,9 +1,9 @@
 {
     "best_solutions": {
         "best_by_fitness": {
-            "iteration": 15,
-            "generation": 501,
-            "fitness": 850.4449956902622,
+            "iteration": 10,
+            "generation": 1079,
+            "fitness": 865.4449956902624,
             "routes_metadata": {
                 "1": [
                     [
@@ -19,11 +19,11 @@
                         "V1"
                     ],
                     [
-                        1,
+                        20,
                         "V1"
                     ],
                     [
-                        20,
+                        1,
                         "V1"
                     ]
                 ],
@@ -53,11 +53,7 @@
                 ],
                 "4": [
                     [
-                        24,
-                        "V4"
-                    ],
-                    [
-                        12,
+                        21,
                         "V4"
                     ]
                 ],
@@ -77,11 +73,11 @@
                         "V1"
                     ],
                     [
-                        25,
+                        19,
                         "V1"
                     ],
                     [
-                        19,
+                        25,
                         "V1"
                     ],
                     [
@@ -111,7 +107,11 @@
                 ],
                 "9": [
                     [
-                        21,
+                        12,
+                        "V4"
+                    ],
+                    [
+                        24,
                         "V4"
                     ]
                 ],
@@ -132,22 +132,303 @@
                 "critical_delivery_metric_positive": 6.8
             },
             "routes_sequences": {
-                "1": "Centro de Distribuição -> Einstein Jardins (Entrega #18) -> Einstein Parque Ibirapuera (Entrega #9) -> Einstein Ibirapuera (Entrega #6) -> Einstein Morumbi (Entrega #1) -> Einstein Morumbi (Entrega #20) -> Centro de Distribuição",
+                "1": "Centro de Distribuição -> Einstein Jardins (Entrega #18) -> Einstein Parque Ibirapuera (Entrega #9) -> Einstein Ibirapuera (Entrega #6) -> Einstein Morumbi (Entrega #20) -> Einstein Morumbi (Entrega #1) -> Centro de Distribuição",
                 "2": "Centro de Distribuição -> Einstein Alphaville (Entrega #23) -> Einstein Alphaville (Entrega #15) -> Einstein Alphaville (Entrega #2) -> Centro de Distribuição",
                 "3": "Centro de Distribuição -> Einstein Anália Franco (Entrega #4) -> Espaço Einstein Bem-Estar e Saúde Mental (Entrega #13) -> Centro de Distribuição",
-                "4": "Centro de Distribuição -> Einstein Morumbi (Entrega #24) -> Centro de Terapias Avançadas em Oncologia e Hematologia Einstein (Entrega #12) -> Centro de Distribuição",
+                "4": "Centro de Distribuição -> Espaço Einstein Bem-Estar e Saúde Mental (Entrega #21) -> Centro de Distribuição",
                 "5": "Centro de Distribuição -> Espaço Einstein Esporte e Reabilitação (Entrega #14) -> Centro de Distribuição",
-                "6": "Centro de Distribuição -> Einstein Perdizes (Entrega #10) -> Einstein Perdizes (Entrega #16) -> Einstein Alto de Pinheiros (Entrega #25) -> Einstein Alto de Pinheiros (Entrega #19) -> Einstein Alto de Pinheiros (Entrega #3) -> Centro de Distribuição",
+                "6": "Centro de Distribuição -> Einstein Perdizes (Entrega #10) -> Einstein Perdizes (Entrega #16) -> Einstein Alto de Pinheiros (Entrega #19) -> Einstein Alto de Pinheiros (Entrega #25) -> Einstein Alto de Pinheiros (Entrega #3) -> Centro de Distribuição",
                 "7": "Centro de Distribuição -> Einstein Vila Mariana (Entrega #11) -> Einstein Chácara Klabin (Entrega #5) -> Einstein Chácara Klabin (Entrega #17) -> Centro de Distribuição",
                 "8": "Centro de Distribuição -> Einstein Parque da Cidade (Entrega #8) -> Centro de Distribuição",
-                "9": "Centro de Distribuição -> Espaço Einstein Bem-Estar e Saúde Mental (Entrega #21) -> Centro de Distribuição",
+                "9": "Centro de Distribuição -> Centro de Terapias Avançadas em Oncologia e Hematologia Einstein (Entrega #12) -> Einstein Morumbi (Entrega #24) -> Centro de Distribuição",
                 "10": "Centro de Distribuição -> Einstein Jardins (Entrega #7) -> Einstein Ibirapuera (Entrega #22) -> Centro de Distribuição"
             }
         },
         "best_by_metrics": {
-            "iteration": 13,
-            "generation": 262,
-            "fitness": 966.0189401664651,
+            "iteration": 18,
+            "generation": 1385,
+            "fitness": 1023.7540793991592,
+            "routes_metadata": {
+                "1": [
+                    [
+                        1,
+                        "V1"
+                    ],
+                    [
+                        23,
+                        "V1"
+                    ],
+                    [
+                        15,
+                        "V1"
+                    ],
+                    [
+                        2,
+                        "V1"
+                    ],
+                    [
+                        19,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        6,
+                        "V2"
+                    ],
+                    [
+                        11,
+                        "V2"
+                    ],
+                    [
+                        5,
+                        "V2"
+                    ],
+                    [
+                        4,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        18,
+                        "V3"
+                    ],
+                    [
+                        9,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        20,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        14,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        7,
+                        "V1"
+                    ],
+                    [
+                        22,
+                        "V1"
+                    ],
+                    [
+                        17,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        24,
+                        "V2"
+                    ],
+                    [
+                        12,
+                        "V2"
+                    ],
+                    [
+                        8,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        10,
+                        "V3"
+                    ],
+                    [
+                        16,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        13,
+                        "V5"
+                    ]
+                ],
+                "11": [
+                    [
+                        25,
+                        "V1"
+                    ],
+                    [
+                        3,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.89,
+                "travel_costs_metric_negative": 31.7,
+                "critical_delivery_metric_positive": 6.3
+            },
+            "routes_sequences": {
+                "1": "Centro de Distribuição -> Einstein Morumbi (Entrega #1) -> Einstein Alphaville (Entrega #23) -> Einstein Alphaville (Entrega #15) -> Einstein Alphaville (Entrega #2) -> Einstein Alto de Pinheiros (Entrega #19) -> Centro de Distribuição",
+                "2": "Centro de Distribuição -> Einstein Ibirapuera (Entrega #6) -> Einstein Vila Mariana (Entrega #11) -> Einstein Chácara Klabin (Entrega #5) -> Einstein Anália Franco (Entrega #4) -> Centro de Distribuição",
+                "3": "Centro de Distribuição -> Einstein Jardins (Entrega #18) -> Einstein Parque Ibirapuera (Entrega #9) -> Centro de Distribuição",
+                "4": "Centro de Distribuição -> Einstein Morumbi (Entrega #20) -> Centro de Distribuição",
+                "5": "Centro de Distribuição -> Espaço Einstein Esporte e Reabilitação (Entrega #14) -> Centro de Distribuição",
+                "6": "Centro de Distribuição -> Einstein Jardins (Entrega #7) -> Einstein Ibirapuera (Entrega #22) -> Einstein Chácara Klabin (Entrega #17) -> Centro de Distribuição",
+                "7": "Centro de Distribuição -> Einstein Morumbi (Entrega #24) -> Centro de Terapias Avançadas em Oncologia e Hematologia Einstein (Entrega #12) -> Einstein Parque da Cidade (Entrega #8) -> Centro de Distribuição",
+                "8": "Centro de Distribuição -> Einstein Perdizes (Entrega #10) -> Einstein Perdizes (Entrega #16) -> Centro de Distribuição",
+                "9": "Centro de Distribuição -> Espaço Einstein Bem-Estar e Saúde Mental (Entrega #21) -> Centro de Distribuição",
+                "10": "Centro de Distribuição -> Espaço Einstein Bem-Estar e Saúde Mental (Entrega #13) -> Centro de Distribuição",
+                "11": "Centro de Distribuição -> Einstein Alto de Pinheiros (Entrega #25) -> Einstein Alto de Pinheiros (Entrega #3) -> Centro de Distribuição"
+            }
+        }
+    },
+    "all_solutions": {
+        "0": {
+            "iteration": 1,
+            "generation": 1497,
+            "fitness": 865.5407989134176,
+            "routes_metadata": {
+                "1": [
+                    [
+                        20,
+                        "V1"
+                    ],
+                    [
+                        24,
+                        "V1"
+                    ],
+                    [
+                        1,
+                        "V1"
+                    ],
+                    [
+                        6,
+                        "V1"
+                    ],
+                    [
+                        9,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        23,
+                        "V2"
+                    ],
+                    [
+                        15,
+                        "V2"
+                    ],
+                    [
+                        2,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        4,
+                        "V3"
+                    ],
+                    [
+                        18,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        14,
+                        "V4"
+                    ],
+                    [
+                        12,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        13,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        3,
+                        "V1"
+                    ],
+                    [
+                        19,
+                        "V1"
+                    ],
+                    [
+                        25,
+                        "V1"
+                    ],
+                    [
+                        16,
+                        "V1"
+                    ],
+                    [
+                        10,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        11,
+                        "V2"
+                    ],
+                    [
+                        5,
+                        "V2"
+                    ],
+                    [
+                        17,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        8,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        22,
+                        "V1"
+                    ],
+                    [
+                        7,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.91,
+                "travel_costs_metric_negative": 33.5,
+                "critical_delivery_metric_positive": 6.6
+            }
+        },
+        "1": {
+            "iteration": 2,
+            "generation": 1562,
+            "fitness": 907.538154857898,
             "routes_metadata": {
                 "1": [
                     [
@@ -197,7 +478,11 @@
                 ],
                 "4": [
                     [
-                        7,
+                        12,
+                        "V4"
+                    ],
+                    [
+                        14,
                         "V4"
                     ]
                 ],
@@ -209,43 +494,43 @@
                 ],
                 "6": [
                     [
-                        11,
+                        10,
                         "V1"
                     ],
                     [
-                        5,
+                        16,
                         "V1"
                     ],
                     [
-                        17,
+                        25,
                         "V1"
                     ],
                     [
-                        22,
+                        19,
+                        "V1"
+                    ],
+                    [
+                        3,
                         "V1"
                     ]
                 ],
                 "7": [
                     [
-                        19,
+                        11,
                         "V2"
                     ],
                     [
-                        25,
+                        5,
                         "V2"
                     ],
                     [
-                        3,
+                        17,
                         "V2"
                     ]
                 ],
                 "8": [
                     [
-                        16,
-                        "V3"
-                    ],
-                    [
-                        10,
+                        8,
                         "V3"
                     ]
                 ],
@@ -257,17 +542,671 @@
                 ],
                 "10": [
                     [
-                        12,
-                        "V5"
-                    ]
-                ],
-                "11": [
-                    [
-                        14,
+                        7,
                         "V1"
                     ],
                     [
+                        22,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.91,
+                "travel_costs_metric_negative": 33.5,
+                "critical_delivery_metric_positive": 6.5
+            }
+        },
+        "2": {
+            "iteration": 3,
+            "generation": 479,
+            "fitness": 873.9142083870865,
+            "routes_metadata": {
+                "1": [
+                    [
+                        6,
+                        "V1"
+                    ],
+                    [
+                        9,
+                        "V1"
+                    ],
+                    [
+                        4,
+                        "V1"
+                    ],
+                    [
+                        13,
+                        "V1"
+                    ],
+                    [
+                        18,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        23,
+                        "V2"
+                    ],
+                    [
+                        15,
+                        "V2"
+                    ],
+                    [
+                        2,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        20,
+                        "V3"
+                    ],
+                    [
+                        1,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        24,
+                        "V4"
+                    ],
+                    [
+                        12,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        14,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        10,
+                        "V1"
+                    ],
+                    [
+                        16,
+                        "V1"
+                    ],
+                    [
+                        19,
+                        "V1"
+                    ],
+                    [
+                        25,
+                        "V1"
+                    ],
+                    [
+                        3,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        11,
+                        "V2"
+                    ],
+                    [
+                        5,
+                        "V2"
+                    ],
+                    [
+                        17,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
                         8,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        7,
+                        "V1"
+                    ],
+                    [
+                        22,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.9,
+                "travel_costs_metric_negative": 33.5,
+                "critical_delivery_metric_positive": 6.6
+            }
+        },
+        "3": {
+            "iteration": 4,
+            "generation": 1138,
+            "fitness": 891.0484207415769,
+            "routes_metadata": {
+                "1": [
+                    [
+                        6,
+                        "V1"
+                    ],
+                    [
+                        9,
+                        "V1"
+                    ],
+                    [
+                        4,
+                        "V1"
+                    ],
+                    [
+                        18,
+                        "V1"
+                    ],
+                    [
+                        14,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        23,
+                        "V2"
+                    ],
+                    [
+                        15,
+                        "V2"
+                    ],
+                    [
+                        2,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        20,
+                        "V3"
+                    ],
+                    [
+                        1,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        24,
+                        "V4"
+                    ],
+                    [
+                        12,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        13,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        19,
+                        "V1"
+                    ],
+                    [
+                        25,
+                        "V1"
+                    ],
+                    [
+                        3,
+                        "V1"
+                    ],
+                    [
+                        16,
+                        "V1"
+                    ],
+                    [
+                        10,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        11,
+                        "V2"
+                    ],
+                    [
+                        5,
+                        "V2"
+                    ],
+                    [
+                        17,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        8,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        22,
+                        "V1"
+                    ],
+                    [
+                        7,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.9,
+                "travel_costs_metric_negative": 33.5,
+                "critical_delivery_metric_positive": 6.6
+            }
+        },
+        "4": {
+            "iteration": 5,
+            "generation": 351,
+            "fitness": 922.5381548578981,
+            "routes_metadata": {
+                "1": [
+                    [
+                        23,
+                        "V1"
+                    ],
+                    [
+                        15,
+                        "V1"
+                    ],
+                    [
+                        2,
+                        "V1"
+                    ],
+                    [
+                        1,
+                        "V1"
+                    ],
+                    [
+                        24,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        20,
+                        "V2"
+                    ],
+                    [
+                        6,
+                        "V2"
+                    ],
+                    [
+                        9,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        4,
+                        "V3"
+                    ],
+                    [
+                        18,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        13,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        16,
+                        "V1"
+                    ],
+                    [
+                        10,
+                        "V1"
+                    ],
+                    [
+                        25,
+                        "V1"
+                    ],
+                    [
+                        19,
+                        "V1"
+                    ],
+                    [
+                        3,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        11,
+                        "V2"
+                    ],
+                    [
+                        5,
+                        "V2"
+                    ],
+                    [
+                        17,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        8,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        14,
+                        "V4"
+                    ],
+                    [
+                        12,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        7,
+                        "V1"
+                    ],
+                    [
+                        22,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.91,
+                "travel_costs_metric_negative": 33.5,
+                "critical_delivery_metric_positive": 6.5
+            }
+        },
+        "5": {
+            "iteration": 6,
+            "generation": 637,
+            "fitness": 871.1964949215193,
+            "routes_metadata": {
+                "1": [
+                    [
+                        9,
+                        "V1"
+                    ],
+                    [
+                        6,
+                        "V1"
+                    ],
+                    [
+                        18,
+                        "V1"
+                    ],
+                    [
+                        4,
+                        "V1"
+                    ],
+                    [
+                        13,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        15,
+                        "V2"
+                    ],
+                    [
+                        23,
+                        "V2"
+                    ],
+                    [
+                        2,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        20,
+                        "V3"
+                    ],
+                    [
+                        1,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        12,
+                        "V4"
+                    ],
+                    [
+                        24,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        14,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        16,
+                        "V1"
+                    ],
+                    [
+                        10,
+                        "V1"
+                    ],
+                    [
+                        19,
+                        "V1"
+                    ],
+                    [
+                        25,
+                        "V1"
+                    ],
+                    [
+                        3,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        11,
+                        "V2"
+                    ],
+                    [
+                        5,
+                        "V2"
+                    ],
+                    [
+                        17,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        8,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        7,
+                        "V1"
+                    ],
+                    [
+                        22,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.9,
+                "travel_costs_metric_negative": 33.5,
+                "critical_delivery_metric_positive": 6.6
+            }
+        },
+        "6": {
+            "iteration": 7,
+            "generation": 640,
+            "fitness": 926.0466995258006,
+            "routes_metadata": {
+                "1": [
+                    [
+                        20,
+                        "V1"
+                    ],
+                    [
+                        1,
+                        "V1"
+                    ],
+                    [
+                        24,
+                        "V1"
+                    ],
+                    [
+                        6,
+                        "V1"
+                    ],
+                    [
+                        9,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        23,
+                        "V2"
+                    ],
+                    [
+                        15,
+                        "V2"
+                    ],
+                    [
+                        2,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        4,
+                        "V3"
+                    ],
+                    [
+                        18,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        14,
+                        "V4"
+                    ],
+                    [
+                        12,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        13,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        7,
+                        "V1"
+                    ],
+                    [
+                        10,
+                        "V1"
+                    ],
+                    [
+                        16,
+                        "V1"
+                    ],
+                    [
+                        21,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        19,
+                        "V2"
+                    ],
+                    [
+                        3,
+                        "V2"
+                    ],
+                    [
+                        25,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        8,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        11,
+                        "V4"
+                    ],
+                    [
+                        5,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        22,
+                        "V1"
+                    ],
+                    [
+                        17,
                         "V1"
                     ]
                 ]
@@ -275,192 +1214,47 @@
             "metrics": {
                 "capacity_utilization_metric_positive": 0.91,
                 "travel_costs_metric_negative": 32.3,
-                "critical_delivery_metric_positive": 6.5
-            },
-            "routes_sequences": {
-                "1": "Centro de Distribuição -> Einstein Alphaville (Entrega #23) -> Einstein Alphaville (Entrega #15) -> Einstein Alphaville (Entrega #2) -> Einstein Morumbi (Entrega #20) -> Einstein Morumbi (Entrega #24) -> Centro de Distribuição",
-                "2": "Centro de Distribuição -> Einstein Morumbi (Entrega #1) -> Einstein Ibirapuera (Entrega #6) -> Einstein Parque Ibirapuera (Entrega #9) -> Centro de Distribuição",
-                "3": "Centro de Distribuição -> Einstein Anália Franco (Entrega #4) -> Einstein Jardins (Entrega #18) -> Centro de Distribuição",
-                "4": "Centro de Distribuição -> Einstein Jardins (Entrega #7) -> Centro de Distribuição",
-                "5": "Centro de Distribuição -> Espaço Einstein Bem-Estar e Saúde Mental (Entrega #13) -> Centro de Distribuição",
-                "6": "Centro de Distribuição -> Einstein Vila Mariana (Entrega #11) -> Einstein Chácara Klabin (Entrega #5) -> Einstein Chácara Klabin (Entrega #17) -> Einstein Ibirapuera (Entrega #22) -> Centro de Distribuição",
-                "7": "Centro de Distribuição -> Einstein Alto de Pinheiros (Entrega #19) -> Einstein Alto de Pinheiros (Entrega #25) -> Einstein Alto de Pinheiros (Entrega #3) -> Centro de Distribuição",
-                "8": "Centro de Distribuição -> Einstein Perdizes (Entrega #16) -> Einstein Perdizes (Entrega #10) -> Centro de Distribuição",
-                "9": "Centro de Distribuição -> Espaço Einstein Bem-Estar e Saúde Mental (Entrega #21) -> Centro de Distribuição",
-                "10": "Centro de Distribuição -> Centro de Terapias Avançadas em Oncologia e Hematologia Einstein (Entrega #12) -> Centro de Distribuição",
-                "11": "Centro de Distribuição -> Espaço Einstein Esporte e Reabilitação (Entrega #14) -> Einstein Parque da Cidade (Entrega #8) -> Centro de Distribuição"
-            }
-        }
-    },
-    "all_solutions": {
-        "0": {
-            "iteration": 1,
-            "generation": 1514,
-            "fitness": 902.7668062342507,
-            "routes_metadata": {
-                "1": [
-                    [
-                        1,
-                        "V1"
-                    ],
-                    [
-                        24,
-                        "V1"
-                    ],
-                    [
-                        20,
-                        "V1"
-                    ],
-                    [
-                        6,
-                        "V1"
-                    ],
-                    [
-                        9,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        15,
-                        "V2"
-                    ],
-                    [
-                        23,
-                        "V2"
-                    ],
-                    [
-                        2,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        18,
-                        "V3"
-                    ],
-                    [
-                        4,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        5,
-                        "V4"
-                    ],
-                    [
-                        11,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        12,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        14,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ],
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ],
-                    [
-                        21,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        13,
-                        "V2"
-                    ],
-                    [
-                        16,
-                        "V2"
-                    ],
-                    [
-                        10,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        7,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        22,
-                        "V1"
-                    ],
-                    [
-                        17,
-                        "V1"
-                    ],
-                    [
-                        8,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.92,
-                "travel_costs_metric_negative": 34.7,
                 "critical_delivery_metric_positive": 6.6
             }
         },
-        "1": {
-            "iteration": 2,
-            "generation": 1038,
-            "fitness": 889.248420741577,
+        "7": {
+            "iteration": 8,
+            "generation": 1478,
+            "fitness": 897.3366204980251,
             "routes_metadata": {
                 "1": [
                     [
-                        6,
+                        15,
                         "V1"
                     ],
                     [
-                        9,
+                        23,
                         "V1"
                     ],
                     [
-                        4,
+                        2,
                         "V1"
                     ],
                     [
-                        18,
+                        20,
                         "V1"
                     ],
                     [
-                        14,
+                        24,
                         "V1"
                     ]
                 ],
                 "2": [
                     [
-                        23,
+                        9,
                         "V2"
                     ],
                     [
-                        15,
+                        4,
                         "V2"
                     ],
                     [
-                        2,
+                        18,
                         "V2"
                     ]
                 ],
@@ -470,17 +1264,17 @@
                         "V3"
                     ],
                     [
-                        20,
+                        12,
+                        "V3"
+                    ],
+                    [
+                        14,
                         "V3"
                     ]
                 ],
                 "4": [
                     [
-                        24,
-                        "V4"
-                    ],
-                    [
-                        12,
+                        6,
                         "V4"
                     ]
                 ],
@@ -492,11 +1286,11 @@
                 ],
                 "6": [
                     [
-                        10,
+                        16,
                         "V1"
                     ],
                     [
-                        16,
+                        10,
                         "V1"
                     ],
                     [
@@ -550,17 +1344,21 @@
                 ]
             },
             "metrics": {
-                "capacity_utilization_metric_positive": 0.9,
-                "travel_costs_metric_negative": 33.5,
-                "critical_delivery_metric_positive": 6.6
+                "capacity_utilization_metric_positive": 0.89,
+                "travel_costs_metric_negative": 33.75,
+                "critical_delivery_metric_positive": 6.4
             }
         },
-        "2": {
-            "iteration": 3,
-            "generation": 1550,
-            "fitness": 922.9634326107921,
+        "8": {
+            "iteration": 9,
+            "generation": 1438,
+            "fitness": 931.0368991891328,
             "routes_metadata": {
                 "1": [
+                    [
+                        6,
+                        "V1"
+                    ],
                     [
                         23,
                         "V1"
@@ -574,17 +1372,13 @@
                         "V1"
                     ],
                     [
-                        14,
-                        "V1"
-                    ],
-                    [
-                        6,
+                        10,
                         "V1"
                     ]
                 ],
                 "2": [
                     [
-                        18,
+                        9,
                         "V2"
                     ],
                     [
@@ -592,27 +1386,27 @@
                         "V2"
                     ],
                     [
-                        9,
+                        18,
                         "V2"
                     ]
                 ],
                 "3": [
                     [
-                        1,
+                        20,
                         "V3"
                     ],
                     [
-                        20,
+                        1,
                         "V3"
                     ]
                 ],
                 "4": [
                     [
-                        24,
+                        5,
                         "V4"
                     ],
                     [
-                        12,
+                        11,
                         "V4"
                     ]
                 ],
@@ -624,6 +1418,142 @@
                 ],
                 "6": [
                     [
+                        16,
+                        "V1"
+                    ],
+                    [
+                        25,
+                        "V1"
+                    ],
+                    [
+                        19,
+                        "V1"
+                    ],
+                    [
+                        3,
+                        "V1"
+                    ],
+                    [
+                        14,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        24,
+                        "V2"
+                    ],
+                    [
+                        12,
+                        "V2"
+                    ],
+                    [
+                        8,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        7,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        22,
+                        "V1"
+                    ],
+                    [
+                        17,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.89,
+                "travel_costs_metric_negative": 33.5,
+                "critical_delivery_metric_positive": 6.5
+            }
+        },
+        "9": {
+            "iteration": 10,
+            "generation": 1079,
+            "fitness": 865.4449956902624,
+            "routes_metadata": {
+                "1": [
+                    [
+                        18,
+                        "V1"
+                    ],
+                    [
+                        9,
+                        "V1"
+                    ],
+                    [
+                        6,
+                        "V1"
+                    ],
+                    [
+                        20,
+                        "V1"
+                    ],
+                    [
+                        1,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        23,
+                        "V2"
+                    ],
+                    [
+                        15,
+                        "V2"
+                    ],
+                    [
+                        2,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        4,
+                        "V3"
+                    ],
+                    [
+                        13,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        14,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        10,
+                        "V1"
+                    ],
+                    [
+                        16,
+                        "V1"
+                    ],
+                    [
                         19,
                         "V1"
                     ],
@@ -633,10 +1563,6 @@
                     ],
                     [
                         3,
-                        "V1"
-                    ],
-                    [
-                        8,
                         "V1"
                     ]
                 ],
@@ -656,6 +1582,138 @@
                 ],
                 "8": [
                     [
+                        8,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        12,
+                        "V4"
+                    ],
+                    [
+                        24,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        7,
+                        "V1"
+                    ],
+                    [
+                        22,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.9,
+                "travel_costs_metric_negative": 33.5,
+                "critical_delivery_metric_positive": 6.8
+            }
+        },
+        "10": {
+            "iteration": 11,
+            "generation": 1875,
+            "fitness": 957.7560054486382,
+            "routes_metadata": {
+                "1": [
+                    [
+                        18,
+                        "V1"
+                    ],
+                    [
+                        4,
+                        "V1"
+                    ],
+                    [
+                        9,
+                        "V1"
+                    ],
+                    [
+                        6,
+                        "V1"
+                    ],
+                    [
+                        14,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        15,
+                        "V2"
+                    ],
+                    [
+                        23,
+                        "V2"
+                    ],
+                    [
+                        2,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        20,
+                        "V3"
+                    ],
+                    [
+                        1,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        7,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        5,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        13,
+                        "V1"
+                    ],
+                    [
+                        21,
+                        "V1"
+                    ],
+                    [
+                        19,
+                        "V1"
+                    ],
+                    [
+                        25,
+                        "V1"
+                    ],
+                    [
+                        3,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        24,
+                        "V2"
+                    ],
+                    [
+                        12,
+                        "V2"
+                    ],
+                    [
+                        8,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
                         10,
                         "V3"
                     ],
@@ -666,7 +1724,401 @@
                 ],
                 "9": [
                     [
+                        11,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        22,
+                        "V1"
+                    ],
+                    [
+                        17,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.87,
+                "travel_costs_metric_negative": 33.75,
+                "critical_delivery_metric_positive": 6.6
+            }
+        },
+        "11": {
+            "iteration": 12,
+            "generation": 230,
+            "fitness": 899.5418835001261,
+            "routes_metadata": {
+                "1": [
+                    [
+                        18,
+                        "V1"
+                    ],
+                    [
+                        4,
+                        "V1"
+                    ],
+                    [
+                        5,
+                        "V1"
+                    ],
+                    [
+                        6,
+                        "V1"
+                    ],
+                    [
+                        9,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        23,
+                        "V2"
+                    ],
+                    [
+                        15,
+                        "V2"
+                    ],
+                    [
+                        2,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        20,
+                        "V3"
+                    ],
+                    [
+                        1,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        24,
+                        "V4"
+                    ],
+                    [
+                        12,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        11,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        14,
+                        "V1"
+                    ],
+                    [
+                        25,
+                        "V1"
+                    ],
+                    [
+                        19,
+                        "V1"
+                    ],
+                    [
+                        3,
+                        "V1"
+                    ],
+                    [
                         21,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        16,
+                        "V2"
+                    ],
+                    [
+                        10,
+                        "V2"
+                    ],
+                    [
+                        13,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        7,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        8,
+                        "V1"
+                    ],
+                    [
+                        17,
+                        "V1"
+                    ],
+                    [
+                        22,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.91,
+                "travel_costs_metric_negative": 34.7,
+                "critical_delivery_metric_positive": 6.6
+            }
+        },
+        "12": {
+            "iteration": 13,
+            "generation": 1079,
+            "fitness": 930.6799002347309,
+            "routes_metadata": {
+                "1": [
+                    [
+                        6,
+                        "V1"
+                    ],
+                    [
+                        15,
+                        "V1"
+                    ],
+                    [
+                        23,
+                        "V1"
+                    ],
+                    [
+                        2,
+                        "V1"
+                    ],
+                    [
+                        25,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        18,
+                        "V2"
+                    ],
+                    [
+                        4,
+                        "V2"
+                    ],
+                    [
+                        9,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        20,
+                        "V3"
+                    ],
+                    [
+                        1,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        11,
+                        "V4"
+                    ],
+                    [
+                        5,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        13,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        10,
+                        "V1"
+                    ],
+                    [
+                        16,
+                        "V1"
+                    ],
+                    [
+                        19,
+                        "V1"
+                    ],
+                    [
+                        3,
+                        "V1"
+                    ],
+                    [
+                        14,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        24,
+                        "V2"
+                    ],
+                    [
+                        12,
+                        "V2"
+                    ],
+                    [
+                        8,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        7,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        17,
+                        "V1"
+                    ],
+                    [
+                        22,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.89,
+                "travel_costs_metric_negative": 33.5,
+                "critical_delivery_metric_positive": 6.5
+            }
+        },
+        "13": {
+            "iteration": 14,
+            "generation": 1029,
+            "fitness": 922.5381548578981,
+            "routes_metadata": {
+                "1": [
+                    [
+                        23,
+                        "V1"
+                    ],
+                    [
+                        15,
+                        "V1"
+                    ],
+                    [
+                        2,
+                        "V1"
+                    ],
+                    [
+                        20,
+                        "V1"
+                    ],
+                    [
+                        24,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        1,
+                        "V2"
+                    ],
+                    [
+                        6,
+                        "V2"
+                    ],
+                    [
+                        9,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        4,
+                        "V3"
+                    ],
+                    [
+                        18,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        13,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        10,
+                        "V1"
+                    ],
+                    [
+                        16,
+                        "V1"
+                    ],
+                    [
+                        19,
+                        "V1"
+                    ],
+                    [
+                        25,
+                        "V1"
+                    ],
+                    [
+                        3,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        11,
+                        "V2"
+                    ],
+                    [
+                        5,
+                        "V2"
+                    ],
+                    [
+                        17,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        8,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        12,
+                        "V4"
+                    ],
+                    [
+                        14,
                         "V4"
                     ]
                 ],
@@ -683,48 +2135,48 @@
             },
             "metrics": {
                 "capacity_utilization_metric_positive": 0.91,
-                "travel_costs_metric_negative": 32.55,
+                "travel_costs_metric_negative": 33.5,
                 "critical_delivery_metric_positive": 6.5
             }
         },
-        "3": {
-            "iteration": 4,
-            "generation": 283,
-            "fitness": 940.7080679197724,
+        "14": {
+            "iteration": 15,
+            "generation": 1759,
+            "fitness": 865.4449956902624,
             "routes_metadata": {
                 "1": [
                     [
-                        15,
+                        18,
                         "V1"
                     ],
                     [
-                        23,
+                        9,
                         "V1"
                     ],
                     [
-                        2,
+                        6,
+                        "V1"
+                    ],
+                    [
+                        1,
                         "V1"
                     ],
                     [
                         20,
                         "V1"
-                    ],
-                    [
-                        24,
-                        "V1"
                     ]
                 ],
                 "2": [
                     [
-                        1,
+                        23,
                         "V2"
                     ],
                     [
-                        6,
+                        15,
                         "V2"
                     ],
                     [
-                        9,
+                        2,
                         "V2"
                     ]
                 ],
@@ -734,33 +2186,29 @@
                         "V3"
                     ],
                     [
-                        18,
+                        13,
                         "V3"
                     ]
                 ],
                 "4": [
                     [
-                        11,
-                        "V4"
-                    ],
-                    [
-                        5,
+                        21,
                         "V4"
                     ]
                 ],
                 "5": [
                     [
-                        13,
+                        14,
                         "V5"
                     ]
                 ],
                 "6": [
                     [
-                        10,
+                        16,
                         "V1"
                     ],
                     [
-                        16,
+                        10,
                         "V1"
                     ],
                     [
@@ -778,37 +2226,41 @@
                 ],
                 "7": [
                     [
-                        14,
+                        11,
                         "V2"
                     ],
                     [
-                        12,
+                        5,
                         "V2"
                     ],
                     [
-                        8,
+                        17,
                         "V2"
                     ]
                 ],
                 "8": [
                     [
-                        7,
+                        8,
                         "V3"
                     ]
                 ],
                 "9": [
                     [
-                        21,
+                        12,
+                        "V4"
+                    ],
+                    [
+                        24,
                         "V4"
                     ]
                 ],
                 "10": [
                     [
-                        22,
+                        7,
                         "V1"
                     ],
                     [
-                        17,
+                        22,
                         "V1"
                     ]
                 ]
@@ -816,25 +2268,149 @@
             "metrics": {
                 "capacity_utilization_metric_positive": 0.9,
                 "travel_costs_metric_negative": 33.5,
-                "critical_delivery_metric_positive": 6.5
+                "critical_delivery_metric_positive": 6.8
             }
         },
-        "4": {
-            "iteration": 5,
-            "generation": 479,
-            "fitness": 874.7964949215193,
+        "15": {
+            "iteration": 16,
+            "generation": 1159,
+            "fitness": 874.8407989134176,
             "routes_metadata": {
                 "1": [
                     [
-                        13,
+                        9,
                         "V1"
                     ],
                     [
-                        4,
+                        6,
                         "V1"
+                    ],
+                    [
+                        1,
+                        "V1"
+                    ],
+                    [
+                        20,
+                        "V1"
+                    ],
+                    [
+                        24,
+                        "V1"
+                    ]
+                ],
+                "2": [
+                    [
+                        15,
+                        "V2"
+                    ],
+                    [
+                        23,
+                        "V2"
+                    ],
+                    [
+                        2,
+                        "V2"
+                    ]
+                ],
+                "3": [
+                    [
+                        4,
+                        "V3"
                     ],
                     [
                         18,
+                        "V3"
+                    ]
+                ],
+                "4": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "5": [
+                    [
+                        13,
+                        "V5"
+                    ]
+                ],
+                "6": [
+                    [
+                        10,
+                        "V1"
+                    ],
+                    [
+                        16,
+                        "V1"
+                    ],
+                    [
+                        25,
+                        "V1"
+                    ],
+                    [
+                        19,
+                        "V1"
+                    ],
+                    [
+                        3,
+                        "V1"
+                    ]
+                ],
+                "7": [
+                    [
+                        11,
+                        "V2"
+                    ],
+                    [
+                        5,
+                        "V2"
+                    ],
+                    [
+                        17,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        8,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        14,
+                        "V4"
+                    ],
+                    [
+                        12,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        7,
+                        "V1"
+                    ],
+                    [
+                        22,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.91,
+                "travel_costs_metric_negative": 33.5,
+                "critical_delivery_metric_positive": 6.6
+            }
+        },
+        "16": {
+            "iteration": 17,
+            "generation": 890,
+            "fitness": 886.1964949215194,
+            "routes_metadata": {
+                "1": [
+                    [
+                        6,
                         "V1"
                     ],
                     [
@@ -842,7 +2418,15 @@
                         "V1"
                     ],
                     [
-                        6,
+                        18,
+                        "V1"
+                    ],
+                    [
+                        4,
+                        "V1"
+                    ],
+                    [
+                        13,
                         "V1"
                     ]
                 ],
@@ -862,21 +2446,17 @@
                 ],
                 "3": [
                     [
-                        1,
+                        20,
                         "V3"
                     ],
                     [
-                        20,
+                        1,
                         "V3"
                     ]
                 ],
                 "4": [
                     [
-                        24,
-                        "V4"
-                    ],
-                    [
-                        12,
+                        21,
                         "V4"
                     ]
                 ],
@@ -888,11 +2468,11 @@
                 ],
                 "6": [
                     [
-                        16,
+                        10,
                         "V1"
                     ],
                     [
-                        10,
+                        16,
                         "V1"
                     ],
                     [
@@ -930,7 +2510,11 @@
                 ],
                 "9": [
                     [
-                        21,
+                        12,
+                        "V4"
+                    ],
+                    [
+                        24,
                         "V4"
                     ]
                 ],
@@ -951,64 +2535,64 @@
                 "critical_delivery_metric_positive": 6.6
             }
         },
-        "5": {
-            "iteration": 6,
-            "generation": 38,
-            "fitness": 1066.9320735584097,
+        "17": {
+            "iteration": 18,
+            "generation": 1385,
+            "fitness": 1023.7540793991592,
             "routes_metadata": {
                 "1": [
                     [
-                        4,
+                        1,
                         "V1"
                     ],
                     [
-                        5,
+                        23,
                         "V1"
                     ],
                     [
-                        17,
+                        15,
                         "V1"
                     ],
                     [
-                        11,
+                        2,
                         "V1"
                     ],
                     [
-                        6,
+                        19,
                         "V1"
                     ]
                 ],
                 "2": [
                     [
-                        1,
+                        6,
                         "V2"
                     ],
                     [
-                        20,
+                        11,
                         "V2"
                     ],
                     [
-                        24,
+                        5,
                         "V2"
                     ],
                     [
-                        12,
+                        4,
                         "V2"
                     ]
                 ],
                 "3": [
                     [
-                        9,
+                        18,
                         "V3"
                     ],
                     [
-                        18,
+                        9,
                         "V3"
                     ]
                 ],
                 "4": [
                     [
-                        7,
+                        20,
                         "V4"
                     ]
                 ],
@@ -1020,121 +2604,129 @@
                 ],
                 "6": [
                     [
-                        15,
-                        "V1"
-                    ],
-                    [
-                        23,
-                        "V1"
-                    ],
-                    [
-                        2,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        25,
-                        "V2"
-                    ],
-                    [
-                        19,
-                        "V2"
-                    ],
-                    [
-                        16,
-                        "V2"
-                    ],
-                    [
-                        10,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        13,
-                        "V3"
-                    ],
-                    [
-                        21,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        8,
+                        7,
                         "V1"
                     ],
                     [
                         22,
                         "V1"
+                    ],
+                    [
+                        17,
+                        "V1"
                     ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.94,
-                "travel_costs_metric_negative": 33.75,
-                "critical_delivery_metric_positive": 5.6
-            }
-        },
-        "6": {
-            "iteration": 7,
-            "generation": 30,
-            "fitness": 979.4815843949709,
-            "routes_metadata": {
-                "1": [
+                ],
+                "7": [
                     [
-                        15,
-                        "V1"
+                        24,
+                        "V2"
                     ],
                     [
-                        23,
-                        "V1"
+                        12,
+                        "V2"
                     ],
                     [
-                        2,
-                        "V1"
+                        8,
+                        "V2"
+                    ]
+                ],
+                "8": [
+                    [
+                        10,
+                        "V3"
                     ],
+                    [
+                        16,
+                        "V3"
+                    ]
+                ],
+                "9": [
+                    [
+                        21,
+                        "V4"
+                    ]
+                ],
+                "10": [
+                    [
+                        13,
+                        "V5"
+                    ]
+                ],
+                "11": [
                     [
                         25,
                         "V1"
                     ],
                     [
+                        3,
+                        "V1"
+                    ]
+                ]
+            },
+            "metrics": {
+                "capacity_utilization_metric_positive": 0.89,
+                "travel_costs_metric_negative": 31.7,
+                "critical_delivery_metric_positive": 6.3
+            }
+        },
+        "18": {
+            "iteration": 19,
+            "generation": 1725,
+            "fitness": 928.2695996712196,
+            "routes_metadata": {
+                "1": [
+                    [
+                        9,
+                        "V1"
+                    ],
+                    [
+                        6,
+                        "V1"
+                    ],
+                    [
                         1,
+                        "V1"
+                    ],
+                    [
+                        20,
+                        "V1"
+                    ],
+                    [
+                        24,
                         "V1"
                     ]
                 ],
                 "2": [
                     [
-                        20,
+                        23,
                         "V2"
                     ],
                     [
-                        18,
+                        15,
                         "V2"
                     ],
                     [
-                        9,
+                        2,
                         "V2"
                     ]
                 ],
                 "3": [
                     [
-                        6,
+                        4,
                         "V3"
                     ],
                     [
-                        4,
+                        18,
                         "V3"
                     ]
                 ],
                 "4": [
                     [
-                        21,
+                        14,
+                        "V4"
+                    ],
+                    [
+                        12,
                         "V4"
                     ]
                 ],
@@ -1146,14 +2738,6 @@
                 ],
                 "6": [
                     [
-                        16,
-                        "V1"
-                    ],
-                    [
-                        10,
-                        "V1"
-                    ],
-                    [
                         19,
                         "V1"
                     ],
@@ -1162,7 +2746,15 @@
                         "V1"
                     ],
                     [
-                        14,
+                        25,
+                        "V1"
+                    ],
+                    [
+                        10,
+                        "V1"
+                    ],
+                    [
+                        16,
                         "V1"
                     ]
                 ],
@@ -1172,27 +2764,23 @@
                         "V2"
                     ],
                     [
-                        12,
-                        "V2"
-                    ],
-                    [
-                        24,
+                        7,
                         "V2"
                     ]
                 ],
                 "8": [
                     [
-                        5,
+                        11,
                         "V3"
                     ],
                     [
-                        11,
+                        5,
                         "V3"
                     ]
                 ],
                 "9": [
                     [
-                        7,
+                        21,
                         "V4"
                     ]
                 ],
@@ -1208,410 +2796,14 @@
                 ]
             },
             "metrics": {
-                "capacity_utilization_metric_positive": 0.9,
-                "travel_costs_metric_negative": 33.75,
-                "critical_delivery_metric_positive": 6.5
-            }
-        },
-        "7": {
-            "iteration": 8,
-            "generation": 1780,
-            "fitness": 967.1150086991222,
-            "routes_metadata": {
-                "1": [
-                    [
-                        6,
-                        "V1"
-                    ],
-                    [
-                        15,
-                        "V1"
-                    ],
-                    [
-                        23,
-                        "V1"
-                    ],
-                    [
-                        2,
-                        "V1"
-                    ],
-                    [
-                        10,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        18,
-                        "V2"
-                    ],
-                    [
-                        4,
-                        "V2"
-                    ],
-                    [
-                        9,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        1,
-                        "V3"
-                    ],
-                    [
-                        20,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        7,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        13,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        14,
-                        "V1"
-                    ],
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ],
-                    [
-                        24,
-                        "V1"
-                    ],
-                    [
-                        12,
-                        "V1"
-                    ],
-                    [
-                        8,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        11,
-                        "V2"
-                    ],
-                    [
-                        5,
-                        "V2"
-                    ],
-                    [
-                        17,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        22,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        21,
-                        "V4"
-                    ]
-                ],
-                "10": [
-                    [
-                        16,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.9,
-                "travel_costs_metric_negative": 34.7,
-                "critical_delivery_metric_positive": 6.5
-            }
-        },
-        "8": {
-            "iteration": 9,
-            "generation": 1941,
-            "fitness": 922.8909888768745,
-            "routes_metadata": {
-                "1": [
-                    [
-                        23,
-                        "V1"
-                    ],
-                    [
-                        15,
-                        "V1"
-                    ],
-                    [
-                        2,
-                        "V1"
-                    ],
-                    [
-                        1,
-                        "V1"
-                    ],
-                    [
-                        24,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        9,
-                        "V2"
-                    ],
-                    [
-                        4,
-                        "V2"
-                    ],
-                    [
-                        18,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        20,
-                        "V3"
-                    ],
-                    [
-                        12,
-                        "V3"
-                    ],
-                    [
-                        14,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        6,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        13,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        8,
-                        "V1"
-                    ],
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        11,
-                        "V2"
-                    ],
-                    [
-                        5,
-                        "V2"
-                    ],
-                    [
-                        17,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        16,
-                        "V3"
-                    ],
-                    [
-                        10,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        21,
-                        "V4"
-                    ]
-                ],
-                "10": [
-                    [
-                        7,
-                        "V1"
-                    ],
-                    [
-                        22,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.9,
-                "travel_costs_metric_negative": 32.8,
-                "critical_delivery_metric_positive": 6.4
-            }
-        },
-        "9": {
-            "iteration": 10,
-            "generation": 1404,
-            "fitness": 874.7964949215193,
-            "routes_metadata": {
-                "1": [
-                    [
-                        13,
-                        "V1"
-                    ],
-                    [
-                        4,
-                        "V1"
-                    ],
-                    [
-                        18,
-                        "V1"
-                    ],
-                    [
-                        9,
-                        "V1"
-                    ],
-                    [
-                        6,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        23,
-                        "V2"
-                    ],
-                    [
-                        15,
-                        "V2"
-                    ],
-                    [
-                        2,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        20,
-                        "V3"
-                    ],
-                    [
-                        1,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        24,
-                        "V4"
-                    ],
-                    [
-                        12,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        14,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        10,
-                        "V1"
-                    ],
-                    [
-                        16,
-                        "V1"
-                    ],
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        11,
-                        "V2"
-                    ],
-                    [
-                        5,
-                        "V2"
-                    ],
-                    [
-                        17,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        8,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        21,
-                        "V4"
-                    ]
-                ],
-                "10": [
-                    [
-                        7,
-                        "V1"
-                    ],
-                    [
-                        22,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.9,
-                "travel_costs_metric_negative": 33.5,
+                "capacity_utilization_metric_positive": 0.91,
+                "travel_costs_metric_negative": 33.15,
                 "critical_delivery_metric_positive": 6.6
             }
         },
-        "10": {
-            "iteration": 11,
-            "generation": 1191,
+        "19": {
+            "iteration": 20,
+            "generation": 1711,
             "fitness": 922.5381548578981,
             "routes_metadata": {
                 "1": [
@@ -1652,11 +2844,11 @@
                 ],
                 "3": [
                     [
-                        4,
+                        18,
                         "V3"
                     ],
                     [
-                        18,
+                        4,
                         "V3"
                     ]
                 ],
@@ -1739,1194 +2931,6 @@
                 "capacity_utilization_metric_positive": 0.91,
                 "travel_costs_metric_negative": 33.5,
                 "critical_delivery_metric_positive": 6.5
-            }
-        },
-        "11": {
-            "iteration": 12,
-            "generation": 97,
-            "fitness": 1012.8644825836758,
-            "routes_metadata": {
-                "1": [
-                    [
-                        15,
-                        "V1"
-                    ],
-                    [
-                        23,
-                        "V1"
-                    ],
-                    [
-                        2,
-                        "V1"
-                    ],
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        20,
-                        "V2"
-                    ],
-                    [
-                        1,
-                        "V2"
-                    ],
-                    [
-                        24,
-                        "V2"
-                    ],
-                    [
-                        12,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        6,
-                        "V3"
-                    ],
-                    [
-                        9,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        18,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        10,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        13,
-                        "V1"
-                    ],
-                    [
-                        4,
-                        "V1"
-                    ],
-                    [
-                        5,
-                        "V1"
-                    ],
-                    [
-                        17,
-                        "V1"
-                    ],
-                    [
-                        11,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        7,
-                        "V2"
-                    ],
-                    [
-                        22,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        8,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        14,
-                        "V4"
-                    ]
-                ],
-                "10": [
-                    [
-                        21,
-                        "V1"
-                    ],
-                    [
-                        16,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.86,
-                "travel_costs_metric_negative": 34.7,
-                "critical_delivery_metric_positive": 5.8
-            }
-        },
-        "12": {
-            "iteration": 13,
-            "generation": 262,
-            "fitness": 966.0189401664651,
-            "routes_metadata": {
-                "1": [
-                    [
-                        23,
-                        "V1"
-                    ],
-                    [
-                        15,
-                        "V1"
-                    ],
-                    [
-                        2,
-                        "V1"
-                    ],
-                    [
-                        20,
-                        "V1"
-                    ],
-                    [
-                        24,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        1,
-                        "V2"
-                    ],
-                    [
-                        6,
-                        "V2"
-                    ],
-                    [
-                        9,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        4,
-                        "V3"
-                    ],
-                    [
-                        18,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        7,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        13,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        11,
-                        "V1"
-                    ],
-                    [
-                        5,
-                        "V1"
-                    ],
-                    [
-                        17,
-                        "V1"
-                    ],
-                    [
-                        22,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        19,
-                        "V2"
-                    ],
-                    [
-                        25,
-                        "V2"
-                    ],
-                    [
-                        3,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        16,
-                        "V3"
-                    ],
-                    [
-                        10,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        21,
-                        "V4"
-                    ]
-                ],
-                "10": [
-                    [
-                        12,
-                        "V5"
-                    ]
-                ],
-                "11": [
-                    [
-                        14,
-                        "V1"
-                    ],
-                    [
-                        8,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.91,
-                "travel_costs_metric_negative": 32.3,
-                "critical_delivery_metric_positive": 6.5
-            }
-        },
-        "13": {
-            "iteration": 14,
-            "generation": 1472,
-            "fitness": 936.8701492481023,
-            "routes_metadata": {
-                "1": [
-                    [
-                        4,
-                        "V1"
-                    ],
-                    [
-                        5,
-                        "V1"
-                    ],
-                    [
-                        11,
-                        "V1"
-                    ],
-                    [
-                        6,
-                        "V1"
-                    ],
-                    [
-                        9,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        15,
-                        "V2"
-                    ],
-                    [
-                        23,
-                        "V2"
-                    ],
-                    [
-                        2,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        20,
-                        "V3"
-                    ],
-                    [
-                        1,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        18,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        14,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        10,
-                        "V1"
-                    ],
-                    [
-                        16,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ],
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        24,
-                        "V2"
-                    ],
-                    [
-                        12,
-                        "V2"
-                    ],
-                    [
-                        8,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        13,
-                        "V3"
-                    ],
-                    [
-                        21,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        7,
-                        "V4"
-                    ]
-                ],
-                "10": [
-                    [
-                        22,
-                        "V1"
-                    ],
-                    [
-                        17,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.9,
-                "travel_costs_metric_negative": 33.75,
-                "critical_delivery_metric_positive": 6.3
-            }
-        },
-        "14": {
-            "iteration": 15,
-            "generation": 501,
-            "fitness": 850.4449956902622,
-            "routes_metadata": {
-                "1": [
-                    [
-                        18,
-                        "V1"
-                    ],
-                    [
-                        9,
-                        "V1"
-                    ],
-                    [
-                        6,
-                        "V1"
-                    ],
-                    [
-                        1,
-                        "V1"
-                    ],
-                    [
-                        20,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        23,
-                        "V2"
-                    ],
-                    [
-                        15,
-                        "V2"
-                    ],
-                    [
-                        2,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        4,
-                        "V3"
-                    ],
-                    [
-                        13,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        24,
-                        "V4"
-                    ],
-                    [
-                        12,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        14,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        10,
-                        "V1"
-                    ],
-                    [
-                        16,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ],
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        11,
-                        "V2"
-                    ],
-                    [
-                        5,
-                        "V2"
-                    ],
-                    [
-                        17,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        8,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        21,
-                        "V4"
-                    ]
-                ],
-                "10": [
-                    [
-                        7,
-                        "V1"
-                    ],
-                    [
-                        22,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.9,
-                "travel_costs_metric_negative": 33.5,
-                "critical_delivery_metric_positive": 6.8
-            }
-        },
-        "15": {
-            "iteration": 16,
-            "generation": 874,
-            "fitness": 910.4591842924308,
-            "routes_metadata": {
-                "1": [
-                    [
-                        14,
-                        "V1"
-                    ],
-                    [
-                        6,
-                        "V1"
-                    ],
-                    [
-                        9,
-                        "V1"
-                    ],
-                    [
-                        4,
-                        "V1"
-                    ],
-                    [
-                        18,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        23,
-                        "V2"
-                    ],
-                    [
-                        15,
-                        "V2"
-                    ],
-                    [
-                        2,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        1,
-                        "V3"
-                    ],
-                    [
-                        20,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        21,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        13,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        10,
-                        "V1"
-                    ],
-                    [
-                        16,
-                        "V1"
-                    ],
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        11,
-                        "V2"
-                    ],
-                    [
-                        5,
-                        "V2"
-                    ],
-                    [
-                        17,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        8,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        12,
-                        "V4"
-                    ],
-                    [
-                        24,
-                        "V4"
-                    ]
-                ],
-                "10": [
-                    [
-                        7,
-                        "V1"
-                    ],
-                    [
-                        22,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.9,
-                "travel_costs_metric_negative": 33.5,
-                "critical_delivery_metric_positive": 6.6
-            }
-        },
-        "16": {
-            "iteration": 17,
-            "generation": 40,
-            "fitness": 922.4961889010058,
-            "routes_metadata": {
-                "1": [
-                    [
-                        6,
-                        "V1"
-                    ],
-                    [
-                        14,
-                        "V1"
-                    ],
-                    [
-                        2,
-                        "V1"
-                    ],
-                    [
-                        15,
-                        "V1"
-                    ],
-                    [
-                        23,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        1,
-                        "V2"
-                    ],
-                    [
-                        20,
-                        "V2"
-                    ],
-                    [
-                        9,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        18,
-                        "V3"
-                    ],
-                    [
-                        4,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        21,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        13,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        16,
-                        "V1"
-                    ],
-                    [
-                        10,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ],
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        11,
-                        "V2"
-                    ],
-                    [
-                        5,
-                        "V2"
-                    ],
-                    [
-                        17,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        8,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        24,
-                        "V4"
-                    ],
-                    [
-                        12,
-                        "V4"
-                    ]
-                ],
-                "10": [
-                    [
-                        7,
-                        "V1"
-                    ],
-                    [
-                        22,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.91,
-                "travel_costs_metric_negative": 33.5,
-                "critical_delivery_metric_positive": 6.5
-            }
-        },
-        "17": {
-            "iteration": 18,
-            "generation": 475,
-            "fitness": 871.1964949215193,
-            "routes_metadata": {
-                "1": [
-                    [
-                        6,
-                        "V1"
-                    ],
-                    [
-                        9,
-                        "V1"
-                    ],
-                    [
-                        18,
-                        "V1"
-                    ],
-                    [
-                        4,
-                        "V1"
-                    ],
-                    [
-                        13,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        15,
-                        "V2"
-                    ],
-                    [
-                        23,
-                        "V2"
-                    ],
-                    [
-                        2,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        20,
-                        "V3"
-                    ],
-                    [
-                        1,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        24,
-                        "V4"
-                    ],
-                    [
-                        12,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        14,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        10,
-                        "V1"
-                    ],
-                    [
-                        16,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ],
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        11,
-                        "V2"
-                    ],
-                    [
-                        5,
-                        "V2"
-                    ],
-                    [
-                        17,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        8,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        21,
-                        "V4"
-                    ]
-                ],
-                "10": [
-                    [
-                        7,
-                        "V1"
-                    ],
-                    [
-                        22,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.9,
-                "travel_costs_metric_negative": 33.5,
-                "critical_delivery_metric_positive": 6.6
-            }
-        },
-        "18": {
-            "iteration": 19,
-            "generation": 561,
-            "fitness": 850.4449956902622,
-            "routes_metadata": {
-                "1": [
-                    [
-                        18,
-                        "V1"
-                    ],
-                    [
-                        9,
-                        "V1"
-                    ],
-                    [
-                        6,
-                        "V1"
-                    ],
-                    [
-                        1,
-                        "V1"
-                    ],
-                    [
-                        20,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        15,
-                        "V2"
-                    ],
-                    [
-                        23,
-                        "V2"
-                    ],
-                    [
-                        2,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        4,
-                        "V3"
-                    ],
-                    [
-                        13,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        24,
-                        "V4"
-                    ],
-                    [
-                        12,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        14,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        16,
-                        "V1"
-                    ],
-                    [
-                        10,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ],
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        11,
-                        "V2"
-                    ],
-                    [
-                        5,
-                        "V2"
-                    ],
-                    [
-                        17,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        8,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        21,
-                        "V4"
-                    ]
-                ],
-                "10": [
-                    [
-                        7,
-                        "V1"
-                    ],
-                    [
-                        22,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.9,
-                "travel_costs_metric_negative": 33.5,
-                "critical_delivery_metric_positive": 6.8
-            }
-        },
-        "19": {
-            "iteration": 20,
-            "generation": 105,
-            "fitness": 956.4238141913545,
-            "routes_metadata": {
-                "1": [
-                    [
-                        23,
-                        "V1"
-                    ],
-                    [
-                        15,
-                        "V1"
-                    ],
-                    [
-                        2,
-                        "V1"
-                    ],
-                    [
-                        1,
-                        "V1"
-                    ],
-                    [
-                        24,
-                        "V1"
-                    ]
-                ],
-                "2": [
-                    [
-                        6,
-                        "V2"
-                    ],
-                    [
-                        11,
-                        "V2"
-                    ],
-                    [
-                        5,
-                        "V2"
-                    ],
-                    [
-                        4,
-                        "V2"
-                    ]
-                ],
-                "3": [
-                    [
-                        9,
-                        "V3"
-                    ],
-                    [
-                        18,
-                        "V3"
-                    ]
-                ],
-                "4": [
-                    [
-                        20,
-                        "V4"
-                    ]
-                ],
-                "5": [
-                    [
-                        12,
-                        "V5"
-                    ]
-                ],
-                "6": [
-                    [
-                        19,
-                        "V1"
-                    ],
-                    [
-                        25,
-                        "V1"
-                    ],
-                    [
-                        3,
-                        "V1"
-                    ],
-                    [
-                        10,
-                        "V1"
-                    ],
-                    [
-                        16,
-                        "V1"
-                    ]
-                ],
-                "7": [
-                    [
-                        21,
-                        "V2"
-                    ],
-                    [
-                        13,
-                        "V2"
-                    ],
-                    [
-                        7,
-                        "V2"
-                    ]
-                ],
-                "8": [
-                    [
-                        14,
-                        "V3"
-                    ]
-                ],
-                "9": [
-                    [
-                        8,
-                        "V1"
-                    ],
-                    [
-                        17,
-                        "V1"
-                    ],
-                    [
-                        22,
-                        "V1"
-                    ]
-                ]
-            },
-            "metrics": {
-                "capacity_utilization_metric_positive": 0.88,
-                "travel_costs_metric_negative": 35.3,
-                "critical_delivery_metric_positive": 6.3
             }
         }
     },

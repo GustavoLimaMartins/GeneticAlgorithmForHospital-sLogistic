@@ -56,7 +56,7 @@ if __name__ == "__main__":
         ratio_mutation=0.3,
         tournament_k=2
     )
-    ga_metadata = ga.run()
+    ga_metadata = ga.run(iterator=1)
     routes_metadata = ga_metadata['routes_metadata']
 
     evaluator = RouteEvaluator(routes_metadata=routes_metadata, vehicle_data=ga.vehicles, delivery_data=ga.deliveries)
