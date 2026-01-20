@@ -688,23 +688,25 @@ streamlit run interface.py
 
 ### Execução com Docker
 
+## Execução com Docker
+
 ```bash
-# 1. Build da imagem
-docker build -t einstein_hospitals_logistic_fiap .
+# 1. Pull da imagem oficial
+docker pull gulimamartins/genetic_algorithm:hospitallogistic
 
 # 2. Criar o container
-docker create --name genetic_algorithm -p 8000:8000 einstein_hospitals_logistic_fiap:latest
+docker create --name genetic_algorithm -p 8000:8000 gulimamartins/genetic_algorithm:hospitallogistic
 
 # 3. Iniciar o container
 docker start genetic_algorithm
 
-# 4. Visualizar logs (opcional)
+# 4. Acompanhar logs (opcional)
 docker logs -f genetic_algorithm
 
 # 5. Parar o container
 docker stop genetic_algorithm
 
-# 6. Remover o container (se necessário)
+# 6. Remover o container (opcional)
 docker rm genetic_algorithm
 ```
 
